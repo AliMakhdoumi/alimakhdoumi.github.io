@@ -1,0 +1,952 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ali Makhdoumi</title>
+
+  <!-- If you keep jemdoc.css, it may fight with the styling below.
+       You can comment this out if you want the "modern" look to fully control everything. -->
+  <!-- <link rel="stylesheet" href="jemdoc.css" type="text/css" /> -->
+
+  <!-- Optional: a clean modern font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #0b0f19;
+      --panel: rgba(255,255,255,0.06);
+      --panel2: rgba(255,255,255,0.08);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.70);
+      --muted2: rgba(255,255,255,0.55);
+      --border: rgba(255,255,255,0.12);
+      --accent: #7dd3fc; /* light sky */
+      --accent2: #a78bfa; /* purple */
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+
+      --sidebar-w: 280px;
+      --content-max: 1050px;
+      --gap: 24px;
+      --radius: 16px;
+    }
+
+    *{ box-sizing: border-box; }
+    html{ scroll-behavior: smooth; }
+    body{
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background: radial-gradient(1200px 800px at 20% 10%, rgba(125,211,252,0.20), transparent 60%),
+                  radial-gradient(1200px 800px at 80% 30%, rgba(167,139,250,0.18), transparent 60%),
+                  var(--bg);
+      line-height: 1.55;
+    }
+
+    a{ color: var(--text); text-decoration: none; }
+    a:hover{ color: white; }
+    .link{
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(125,211,252,0.35);
+    }
+    .link:hover{ border-bottom-color: rgba(125,211,252,0.9); }
+
+    /* Layout */
+    .layout{
+      display: grid;
+      grid-template-columns: var(--sidebar-w) 1fr;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar{
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 22px 16px;
+      border-right: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      backdrop-filter: blur(10px);
+    }
+
+    .brand{
+      padding: 14px 14px 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.05);
+      box-shadow: var(--shadow);
+    }
+    .brand .name{
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      font-size: 16px;
+    }
+    .brand .role{
+      margin-top: 6px;
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+
+    .nav{
+      margin-top: 14px;
+      padding: 10px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+    }
+    .nav a{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 10px;
+      border-radius: 12px;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 13.5px;
+    }
+    .nav a:hover{
+      background: rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.92);
+    }
+    .nav a.active{
+      background: rgba(125,211,252,0.14);
+      color: white;
+      border: 1px solid rgba(125,211,252,0.22);
+    }
+    .dot{
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.25);
+      flex: 0 0 auto;
+    }
+    .nav a.active .dot{
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(125,211,252,0.12);
+    }
+
+    .sidebar .small-links{
+      margin-top: 14px;
+      padding: 10px 12px;
+      color: var(--muted2);
+      font-size: 12.5px;
+      border-top: 1px solid rgba(255,255,255,0.10);
+    }
+
+    /* Main content */
+    .content{
+      padding: 34px 34px 60px 34px;
+      /* This fixes “text should start more to the right”: extra left padding + consistent grid. */
+    }
+    .wrap{
+      max-width: var(--content-max);
+      margin: 0 auto;
+    }
+
+    /* Hero */
+    .hero{
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: var(--gap);
+      align-items: start;
+      padding: 18px;
+      border-radius: calc(var(--radius) + 4px);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.05);
+      box-shadow: var(--shadow);
+    }
+    .photo{
+      border-radius: calc(var(--radius) + 4px);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.03);
+    }
+    .photo img{
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .hero h1{
+      margin: 2px 0 8px 0;
+      font-size: 36px;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+    .pillrow{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 10px 0 14px 0;
+    }
+    .pill{
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.04);
+      color: var(--muted);
+      font-size: 12.5px;
+      font-weight: 600;
+    }
+    .meta{
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .meta b{ color: rgba(255,255,255,0.92); }
+
+    .cta{
+      margin-top: 14px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .btn{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.04);
+      color: rgba(255,255,255,0.92);
+      font-weight: 700;
+      font-size: 13.5px;
+    }
+    .btn:hover{
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(255,255,255,0.20);
+    }
+    .btn.primary{
+      background: rgba(125,211,252,0.16);
+      border-color: rgba(125,211,252,0.25);
+    }
+
+    /* Sections */
+    section{
+      margin-top: 28px;
+      padding: 18px;
+      border-radius: calc(var(--radius) + 4px);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+    }
+    section h2{
+      margin: 0 0 12px 0;
+      font-size: 18px;
+      letter-spacing: -0.01em;
+    }
+    .subtle{
+      color: var(--muted2);
+      font-size: 13.5px;
+      margin: 0 0 14px 0;
+    }
+
+    .paper{
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.03);
+      margin-bottom: 10px;
+    }
+    .paper .title{
+      font-weight: 700;
+      color: rgba(255,255,255,0.95);
+      margin-bottom: 6px;
+    }
+    .paper .authors, .paper .venue{
+      color: var(--muted);
+      font-size: 13.5px;
+    }
+    .paper .venue b{ color: rgba(255,255,255,0.92); }
+
+    .two-col{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    /* Teaching list */
+    .list{
+      display: grid;
+      gap: 10px;
+    }
+    .list .item{
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.03);
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 13.5px;
+    }
+    .list .item span{ color: rgba(255,255,255,0.92); }
+
+    /* Mobile */
+    .topbar{
+      display: none;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(11,15,25,0.75);
+      backdrop-filter: blur(10px);
+    }
+    .topbar .row{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .menu-btn{
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.04);
+      color: rgba(255,255,255,0.92);
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .mobile-drawer{
+      display: none;
+      padding: 10px 14px 14px 14px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(11,15,25,0.88);
+      backdrop-filter: blur(10px);
+    }
+    .mobile-drawer a{
+      display: block;
+      padding: 10px 8px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+    .mobile-drawer a:hover{ color: white; }
+
+    @media (max-width: 980px){
+      .layout{ grid-template-columns: 1fr; }
+      .sidebar{ display: none; }
+      .topbar{ display: block; }
+      .content{ padding: 18px 14px 50px 14px; }
+      .hero{ grid-template-columns: 1fr; }
+    }
+
+    /* Anchor offset (so headings aren’t hidden under sticky topbar on mobile) */
+    [id]{ scroll-margin-top: 80px; }
+  </style>
+
+  <script>
+    // Mobile nav toggle + active section highlighting
+    function toggleMenu(){
+      const drawer = document.getElementById('mobileDrawer');
+      drawer.style.display = (drawer.style.display === 'block') ? 'none' : 'block';
+    }
+
+    // Highlight active nav link based on scroll
+    document.addEventListener('DOMContentLoaded', () => {
+      const sections = ['home','WorkingPapers','PublishedPapers','Conferences','Teaching'].map(id => document.getElementById(id)).filter(Boolean);
+      const links = Array.from(document.querySelectorAll('.nav a'));
+
+      const setActive = (id) => {
+        links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === `#${id}`));
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        // pick the most visible section
+        const visible = entries.filter(e => e.isIntersecting).sort((a,b)=> b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible?.target?.id) setActive(visible.target.id);
+      }, { root: null, threshold: [0.2, 0.35, 0.5, 0.7] });
+
+      sections.forEach(s => observer.observe(s));
+      // default
+      setActive('home');
+    });
+  </script>
+</head>
+
+<body>
+  <!-- Mobile topbar -->
+  <div class="topbar">
+    <div class="row">
+      <div style="font-weight:800; letter-spacing:-0.02em;">Ali Makhdoumi</div>
+      <button class="menu-btn" type="button" onclick="toggleMenu()">Menu</button>
+    </div>
+  </div>
+  <div class="mobile-drawer" id="mobileDrawer">
+    <!-- FIX #1: jump links should be in-page anchors -->
+    <a href="#home" onclick="toggleMenu()">Home</a>
+    <a href="#WorkingPapers" onclick="toggleMenu()">Working Papers</a>
+    <a href="#PublishedPapers" onclick="toggleMenu()">Published Papers</a>
+    <a href="#Conferences" onclick="toggleMenu()">Conference Papers</a>
+    <a href="#Teaching" onclick="toggleMenu()">Teaching</a>
+  </div>
+
+  <div class="layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="name">Ali Makhdoumi</div>
+        <div class="role">Associate Professor · Duke University </div>
+      </div>
+
+      <nav class="nav" aria-label="Section navigation">
+        <!-- FIX #1: use # anchors (not index.html#...) so jump links work -->
+        <a href="#home" class="active"><span class="dot"></span> Home</a>
+        <a href="#WorkingPapers"><span class="dot"></span> Working Papers</a>
+        <a href="#PublishedPapers"><span class="dot"></span> Published Papers</a>
+        <a href="#Conferences"><span class="dot"></span> Conference Papers</a>
+        <a href="#Teaching"><span class="dot"></span> Teaching</a>
+      </nav>
+
+      <div class="small-links">
+        <div style="margin-bottom:8px;">
+          <a class="link" href="https://scholar.google.com/citations?user=Fm5_a0oAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener">
+            Google Scholar
+          </a>
+        </div>
+        <div style="color:var(--muted2);">
+          Email: ali.makhdoumi (at) duke (dot) edu
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="content">
+      <div class="wrap">
+
+        <section id="home" class="hero" style="margin-top:0;">
+          <div class="photo">
+            <!-- Keep as local file in same folder -->
+            <img src="AliM.png" alt="Ali Makhdoumi" />
+          </div>
+
+          <div>
+            <h1>Ali Makhdoumi</h1>
+
+            <div class="pillrow">
+              <div class="pill">Associate Professor</div>
+              <div class="pill">Duke University</div>
+              <div class="pill">Fuqua School of Business · Decision Sciences</div>
+              <div class="pill">Computer Science (secondary)</div>
+            </div>
+
+            <p class="meta">
+              I received a BSc in Electrical Engineering and a BSc in Mathematics from Sharif University of Technology.
+              Before joining Fuqua, I received my PhD in EECS from
+              <a class="link" href="http://lids.mit.edu" target="_blank" rel="noopener">LIDS</a> at
+              <a class="link" href="http://www.mit.edu" target="_blank" rel="noopener">MIT</a>.
+              I was lucky to be advised by
+              <a class="link" href="http://www.mit.edu/~asuman" target="_blank" rel="noopener">Asuman Ozdaglar</a>
+              and
+              <a class="link" href="http://economics.mit.edu/faculty/acemoglu" target="_blank" rel="noopener">Daron Acemoglu</a>.
+            </p>
+
+            <p class="meta">
+              My research interests include optimization, game theory, networks, and learning with applications to
+              market design, data markets, and privacy.
+            </p>
+
+            <div class="cta">
+              <a class="btn primary" href="https://scholar.google.com/citations?user=Fm5_a0oAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener">Google Scholar</a>
+              <!-- Optional: add CV when you want -->
+              <!-- <a class="btn" href="Ali_Makhdoumi_CV.pdf" target="_blank" rel="noopener">CV</a> -->
+              <a class="btn" href="#WorkingPapers">Jump to papers ↓</a>
+            </div>
+
+            <p class="meta" style="margin-top:14px;">
+              <b>Address:</b> W315, 100 Fuqua Drive, Durham, NC
+            </p>
+          </div>
+        </section>
+
+        <section id="WorkingPapers">
+          <section id="WorkingPapers">
+  <h2>Working Papers</h2>
+  <p class="subtle"> List of working papers and manuscripts under review.</p>
+
+  <div class="paper">
+    <div class="title">
+      <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6220718" target="_blank">
+        Optimal Mechanism Design with Post-Allocation Signal
+      </a>
+    </div>
+    <div class="authors">With Saeed Alaei, Ali Daei Naby, and Azarakhsh Malekian</div>
+    <div class="venue">Working paper, 2026</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">Clearing Multi-Unit Markets with Simple Pricing</div>
+    <div class="authors">With Xinchang Wang and Sasa Pekec</div>
+    <div class="venue">Working paper, 2026</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">
+      <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6212838" target="_blank">
+        Dynamic Learning and Optimal Advertising Mechanism for LLM Platforms
+      </a>
+    </div>
+    <div class="authors">With Saeed Alaei and Azarakhsh Malekian</div>
+    <div class="venue">Working paper, 2026</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">
+      <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5297868" target="_blank">
+        Incentivizing Data Collaboration: A Mechanism Design Approach
+      </a>
+    </div>
+    <div class="authors">With Saeed Alaei, Ali Daei Naby, and Azarakhsh Malekian</div>
+    <div class="venue">Working paper, 2025</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">
+      <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5139835" target="_blank">
+        Mechanism Design with Post-Allocation Inspection and Exclusion Penalties
+      </a>
+    </div>
+    <div class="authors">With Xuanjie Li and Sasa Pekec</div>
+    <div class="venue">Working paper, 2025</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">
+      <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5143773" target="_blank">
+        Approximately Optimal Mechanism for Multiunit Demand Buyers with Post-Allocation Inspection
+      </a>
+    </div>
+    <div class="authors">With Xuanjie Li and Alex Belloni</div>
+    <div class="venue"><b>Accepted:</b> ACM EC 2025 (extended abstract) · Working paper, 2025</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">
+      <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4727167" target="_blank">
+        On Three-Layer Data Markets
+      </a>
+    </div>
+    <div class="authors">With Alireza Fallah, Michael I. Jordan, Azarakhsh Malekian</div>
+    <div class="venue"><b>R&amp;R:</b> Quantitative Economics, 2025</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">
+      <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4723813" target="_blank">
+        The Limits of Price Discrimination Under Privacy Constraints
+      </a>
+    </div>
+    <div class="authors">With Alireza Fallah, Michael I. Jordan, Azarakhsh Malekian</div>
+    <div class="venue">Working paper, 2024</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">
+      <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4658797" target="_blank">
+        The Feedback Loop of Statistical Discrimination
+      </a>
+    </div>
+    <div class="authors">With Jackie Baek</div>
+    <div class="venue"><b>Major Revision:</b> Management Science, 2025</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">
+      <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4333457" target="_blank">
+        How Good Are Privacy Guarantees? Platform Architecture and Violation of User Privacy
+      </a>
+    </div>
+    <div class="authors">With Daron Acemoglu, Alireza Fallah, Azarakhsh Malekian, Asuman Ozdaglar</div>
+    <div class="venue"><b>Major Revision:</b> Mathematics of Operations Research, 2025 · WINE 2023</div>
+  </div>
+
+  
+
+  
+
+  
+
+  <div class="paper">
+    <div class="title">
+      <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4311351" target="_blank">
+        Bridging Central and Local Differential Privacy in Data Acquisition Mechanisms
+      </a>
+    </div>
+    <div class="authors">With Alireza Fallah, Azarakhsh Malekian, Asuman Ozdaglar</div>
+    <div class="venue"><b>Major Revision:</b> Management Science, 2024 · NeurIPS 2022</div>
+  </div>
+
+  
+
+</section>
+
+        </section>
+
+        <section id="PublishedPapers">
+  <h2>Published Papers</h2>
+  <p class="subtle">Journal publications.</p>
+
+  <div class="paper">
+    <div class="title">
+      <a class="link" href="https://economics.mit.edu/sites/default/files/2023-05/A%20Model%20of%20Behavioral%20Manipulation.pdf" target="_blank">
+        A Model of Behavioral Manipulation
+      </a>
+    </div>
+    <div class="authors">With Daron Acemoglu, Azarakhsh Malekian, and Asuman Ozdaglar</div>
+    <div class="venue"><b>American Economic Review: Insights</b>, 2025</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">
+      <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4176274" target="_blank">
+        Multi-Item Order Fulfillment Revisited: LP Formulation and Prophet Inequality
+      </a>
+    </div>
+    <div class="authors">With Ayoub Amil and Yehua Wei</div>
+    <div class="venue"><b>Management Science</b>, 2025</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">
+      <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3855810" target="_blank">
+        Revenue Maximization Under Unknown Private Values With Non-Obligatory Inspection
+      </a>
+    </div>
+    <div class="authors">With Saeed Alaei and Azarakhsh Malekian</div>
+    <div class="venue"><b>Operations Research</b>, 2024</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">
+      <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3700525" target="_blank">
+        Optimal Auction Design with Deferred Inspection and Reward
+      </a>
+    </div>
+    <div class="authors">With Alexandre Belloni, Saeed Alaei, and Azarakhsh Malekian</div>
+    <div class="venue"><b>Operations Research</b>, 2024</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">
+      <a class="link" href="https://arxiv.org/abs/2201.03968" target="_blank">
+        Optimal and Differentially Private Data Acquisition: Central and Local Mechanisms
+      </a>
+    </div>
+    <div class="authors">With Alireza Fallah, Azarakhsh Malekian, Asuman Ozdaglar</div>
+    <div class="venue"><b>Operations Research</b>, 2023</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">
+      <a class="link" href="https://pubsonline.informs.org/doi/abs/10.1287/opre.2023.2468" target="_blank">
+        Optimal Subscription Planning for Digital Goods
+      </a>
+    </div>
+    <div class="authors">With Saeed Alaei and Azarakhsh Malekian</div>
+    <div class="venue"><b>Operations Research</b>, 2023</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">
+      <a class="link" href="https://www.nber.org/papers/w27483" target="_blank">
+        Testing, Voluntary Social Distancing and the Spread of an Infection
+      </a>
+    </div>
+    <div class="authors">With Daron Acemoglu, Azarakhsh Malekian, and Asuman Ozdaglar</div>
+    <div class="venue"><b>Operations Research</b>, 2023</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">
+      <a class="link" href="https://pubsonline.informs.org/doi/abs/10.1287/mnsc.2022.4534" target="_blank">
+        Providing Data Samples for Free
+      </a>
+    </div>
+    <div class="authors">With Kimon Drakopoulos</div>
+    <div class="venue"><b>Management Science</b>, 2022</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">
+      <a class="link" href="https://pubsonline.informs.org/doi/abs/10.1287/mnsc.2022.4307" target="_blank">
+        Revenue-Sharing Allocation Strategies for Two-Sided Media Platforms
+      </a>
+    </div>
+    <div class="authors">With Sasa Pekec, Saeed Alaei, and Azarakhsh Malekian</div>
+    <div class="venue"><b>Management Science</b>, 2022</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">
+      <a class="link" href="https://onlinelibrary.wiley.com/doi/full/10.3982/ECTA15847" target="_blank">
+        Learning From Reviews: The Selection Effect and the Speed of Learning
+      </a>
+    </div>
+    <div class="authors">With Daron Acemoglu, Azarakhsh Malekian, Asuman Ozdaglar</div>
+    <div class="venue"><b>Econometrica</b>, 2022</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">
+      <a class="link" href="https://www.aeaweb.org/articles?id=10.1257/mic.20200200&&from=f" target="_blank">
+        Too Much Data: Prices and Inefficiencies in Data Markets
+      </a>
+    </div>
+    <div class="authors">With Daron Acemoglu, Azarakhsh Malekian, Asuman Ozdaglar</div>
+    <div class="venue"><b>AEJ: Microeconomics</b>, 2021</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">
+      <a class="link" href="https://pubsonline.informs.org/doi/abs/10.1287/mnsc.2020.3820" target="_blank">
+        Maximizing Sequence-Submodular Functions and its Application to Online Advertising
+      </a>
+    </div>
+    <div class="authors">With Saeed Alaei and Azarakhsh Malekian</div>
+    <div class="venue"><b>Management Science</b>, 2020</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">Informational Braess' Paradox: The Effect of Information on Traffic Congestion</div>
+    <div class="authors">With Daron Acemoglu, Azarakhsh Malekian, Asuman Ozdaglar</div>
+    <div class="venue"><b>Operations Research</b>, 2018</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">Privacy-Constrained Network Formation</div>
+    <div class="authors">With Daron Acemoglu, Azarakhsh Malekian, Asuman Ozdaglar</div>
+    <div class="venue"><b>Games and Economic Behavior</b>, 2017</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">Convergence Rate of Distributed ADMM over Networks</div>
+    <div class="authors">With Asuman Ozdaglar</div>
+    <div class="venue"><b>IEEE Transactions on Automatic Control</b>, 2017</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">Principal Inertia Components and Applications</div>
+    <div class="authors">With Flavio Calmon, Muriel M&eacute;dard, Mayank Varia, Mark Christiansen, Ken Duffy</div>
+    <div class="venue"><b>IEEE Transactions on Information Theory</b>, 2017</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">Network Maximal Correlation</div>
+    <div class="authors">With Soheil Feizi, Ken Duffy, Manolis Kellis, Muriel M&eacute;dard</div>
+    <div class="venue"><b>IEEE Transactions on Network Science and Engineering</b>, 2017</div>
+  </div>
+
+</section>
+
+        </section>
+
+        <section id="Conferences">
+          <!-- Replace your entire <section id="Conferences"> ... </section> with this -->
+
+<section id="Conferences">
+  <h2>Refereed Conference Papers</h2>
+  <p class="subtle">List of refereed conference publications.</p>
+
+
+  <div class="paper">
+    <div class="title">Deterministic Refund Mechanisms</div>
+    <div class="authors">S. Alaei, S. Chawla, Z. Huang, A. Makhdoumi, A. Malekian</div>
+    <div class="venue">SAGT, 2025</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">Approximately Optimal Mechanism for Multiunit Demand Buyers with Post-Allocation Inspection</div>
+    <div class="authors">A. Belloni, X. Li, A. Makhdoumi</div>
+    <div class="venue">ACM Conference on Economics and Computation (EC), 2025</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">How Good Are Privacy Guarantees? Platform Architecture and Violation of User Privacy</div>
+    <div class="authors">D. Acemoglu, A. Fallah, A. Makhdoumi, A. Malekian, A. Ozdaglar</div>
+    <div class="venue">Conference on Web and Internet Economics (WINE), 2023</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">Multi-Item Order Fulfillment Revisited: LP Formulation and Prophet Inequality</div>
+    <div class="authors">A. Amil, A. Makhdoumi, Y. Wei</div>
+    <div class="venue">ACM Conference on Economics and Computation (EC), 2023</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">Bridging Central and Local Differential Privacy in Data Acquisition Mechanisms</div>
+    <div class="authors">A. Fallah, A. Makhdoumi, A. Malekian, A. Ozdaglar</div>
+    <div class="venue">NeurIPS, 2022</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">Optimal and Differentially Private Data Acquisition: Central and Local Mechanisms</div>
+    <div class="authors">A. Fallah, A. Makhdoumi, A. Malekian, A. Ozdaglar</div>
+    <div class="venue">ACM Conference on Economics and Computation (EC), 2022</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">Descending Price Auctions with Bounded Number of Price Levels and Batched Prophet Inequality</div>
+    <div class="authors">S. Alaei, A. Makhdoumi, A. Malekian, R. Niazadeh</div>
+    <div class="venue">ACM Conference on Economics and Computation (EC), 2022</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">Revenue Maximization Under Unknown Private Values With Non-Obligatory Inspection</div>
+    <div class="authors">S. Alaei, A. Makhdoumi, A. Malekian</div>
+    <div class="venue">ACM Conference on Economics and Computation (EC), 2021</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">
+      <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2980109" target="_blank" rel="noopener">
+        Optimal Dynamic Pricing of Network Goods
+      </a> (short version)
+    </div>
+    <div class="authors">A. Makhdoumi, A. Malekian, A. Ozdaglar</div>
+    <div class="venue">Allerton Conference on Communication, Control, and Computing, 2017</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">Guesswork Subject to a Total Entropy Budget</div>
+    <div class="authors">A. Rezaee, A. Beirami, A. Makhdoumi, M. M&eacute;dard, K. Duffy</div>
+    <div class="venue">Allerton Conference on Communication, Control, and Computing, 2017</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">
+      <a class="link" href="http://arxiv.org/abs/1603.03461" target="_blank" rel="noopener">
+        Graph Balancing for Distributed Subgradient Methods over Directed Graphs
+      </a>
+    </div>
+    <div class="authors">A. Makhdoumi, A. Ozdaglar</div>
+    <div class="venue">Conference on Decision and Control (CDC), 2015</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">
+      <a class="link" href="broadcast.pdf" target="_blank" rel="noopener">
+        Broadcast-based Distributed Alternating Direction Method of Multipliers
+      </a>
+    </div>
+    <div class="authors">A. Makhdoumi, A. Ozdaglar</div>
+    <div class="venue">Allerton Conference on Communication, Control, and Computing, 2014</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">
+      <a class="link" href="http://www.rle.mit.edu/ncrc/wp-content/uploads/2015/04/Forgot-Your-Password-Correlation-Dilution.pdf" target="_blank" rel="noopener">
+        Forgot Your Password: Correlation Dilution
+      </a>
+    </div>
+    <div class="authors">A. Makhdoumi, F. Calmon, M. M&eacute;dard</div>
+    <div class="venue">International Symposium on Information Theory (ISIT), 2015</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">
+      <a class="link" href="http://www.rle.mit.edu/ncrc/wp-content/uploads/2015/04/Fundamental-Limits-of-Perfect-Privacy.pdf" target="_blank" rel="noopener">
+        Fundamental Limits of Perfect Privacy
+      </a>
+    </div>
+    <div class="authors">F. Calmon, A. Makhdoumi, M. M&eacute;dard</div>
+    <div class="venue">International Symposium on Information Theory (ISIT), 2015</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">
+      <a class="link" href="http://arxiv.org/abs/1402.1774" target="_blank" rel="noopener">
+        From Information Bottleneck to Privacy Funnel
+      </a>
+    </div>
+    <div class="authors">A. Makhdoumi, S. Salamatian, N. Fawaz, M. M&eacute;dard</div>
+    <div class="venue">Information Theory Workshop (ITW), 2014</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">
+      <a class="link" href="http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=6736724" target="_blank" rel="noopener">
+        Utility-Privacy Trade-off under Statistical Uncertainty
+      </a>
+    </div>
+    <div class="authors">A. Makhdoumi, N. Fawaz</div>
+    <div class="venue">Allerton Conference on Communication, Control, and Computing, 2013</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">
+      <a class="link" href="http://arxiv.org/abs/1308.5239" target="_blank" rel="noopener">
+        On Locally Decodable Source Coding
+      </a>
+    </div>
+    <div class="authors">A. Makhdoumi, S. Huang, M. M&eacute;dard, Y. Polyanskiy</div>
+    <div class="venue">International Conference on Communication (ICC), 2015</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">
+      <a class="link" href="http://www.rle.mit.edu/ncrc/wp-content/uploads/2015/09/geo.pdf" target="_blank" rel="noopener">
+        A geometric perspective on guesswork
+      </a>
+    </div>
+    <div class="authors">A. Beirami, R. Calderbank, M. Christiansen, K. Duffy, A. Makhdoumi, M. M&eacute;dard</div>
+    <div class="venue">Allerton Conference on Communication, Control, and Computing, 2015</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">
+      <a class="link" href="http://www.rle.mit.edu/ncrc/wp-content/uploads/2014/08/2014_t_codes.pdf" target="_blank" rel="noopener">
+        Using T-codes as locally decodable source codes
+      </a>
+    </div>
+    <div class="authors">U. Speidel, T. A. Gulliver, A. Makhdoumi, M. M&eacute;dard</div>
+    <div class="venue">Information Theory Workshop (ITW), 2014</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">
+      <a class="link" href="http://www.rle.mit.edu/ncrc/wp-content/uploads/2014/10/tunable-sparse.pdf" target="_blank" rel="noopener">
+        Tunable Sparse Network Coding for Multicast Networks
+      </a>
+    </div>
+    <div class="authors">S. Feizi, D. E. Lucani, C. W. S&oslash;rensen, A. Makhdoumi, M. M&eacute;dard</div>
+    <div class="venue">NetCod, 2014</div>
+  </div>
+
+  <div class="paper">
+    <div class="title">
+      <a class="link" href="http://arxiv.org/abs/1102.4099" target="_blank" rel="noopener">
+        Capacity Achieving Linear Codes with Random Binary Sparse Generating Matrices
+      </a>
+    </div>
+    <div class="authors">A. Makhdoumi, H. K. Abadi, P. Pad, H. Saeedi, F. Marvasti, A. Alishahi</div>
+    <div class="venue">International Symposium on Information Theory (ISIT), 2012</div>
+  </div>
+</section>
+
+
+        <section id="Teaching">
+          <h2>Teaching</h2>
+          <p class="subtle">Recent and recurring courses.</p>
+
+          <div class="list">
+            <div class="item"><span>Decision Models</span> — Fuqua School of Business (MBA &amp; WEMBA)</div>
+            <div class="item"><span>Applied Probability and Statistics</span> — Fuqua (MQM)</div>
+            <div class="item"><span>Convex Optimization</span> — Fuqua (PhD)</div>
+            <div class="item"><span>Modeling and Decision Analysis</span> — Fuqua (MMS)</div>
+          </div>
+        </section>
+
+        <div style="margin-top:18px; color:var(--muted2); font-size:12.5px;">
+          © <span id="year"></span> Ali Makhdoumi
+        </div>
+        <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+      </div>
+    </main>
+  </div>
+</body>
+</html>
