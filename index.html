@@ -11,6 +11,126 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
+
+/* ===============================
+   MEDIA – Vertical Press Layout
+   =============================== */
+
+#InterviewsMedia h2{
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.media-list{
+  display: grid;
+  gap: 16px;
+}
+
+.media-row{
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 18px;
+  align-items: start;
+
+  padding: 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.05),
+    rgba(255,255,255,0.025)
+  );
+  box-shadow: 0 14px 32px rgba(0,0,0,0.30);
+  transition: transform .18s ease, border-color .18s ease;
+}
+
+.media-row:hover{
+  transform: translateY(-2px);
+  border-color: rgba(125,211,252,0.28);
+}
+
+.media-logo{
+  width: 90px;
+  height: 90px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.04);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 10px 18px rgba(0,0,0,0.25);
+}
+
+.media-logo img{
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.14);
+}
+
+.media-outlet{
+  font-weight: 950;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 6px;
+}
+
+.media-title{
+  font-size: 16px;
+  font-weight: 900;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+.media-desc{
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.media-buttons{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.media-btn{
+  padding: 8px 12px;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 12.5px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.04);
+}
+
+.media-btn:hover{
+  background: rgba(255,255,255,0.08);
+}
+
+.media-btn.primary{
+  border-color: rgba(125,211,252,0.30);
+  background: rgba(125,211,252,0.14);
+}
+
+@media (max-width: 720px){
+  .media-row{
+    grid-template-columns: 70px 1fr;
+    gap: 14px;
+  }
+  .media-logo{
+    width: 70px;
+    height: 70px;
+    border-radius: 16px;
+  }
+  .media-logo img{
+    width: 42px;
+    height: 42px;
+  }
+}
+
+
     :root{
       --bg: #0b0f19;
       --panel: rgba(255,255,255,0.06);
@@ -454,6 +574,74 @@
       border-color: rgba(125,211,252,0.22);
       background: linear-gradient(180deg, rgba(125,211,252,0.08), rgba(255,255,255,0.02));
     }
+
+    /* Media cards become “press rows”: big square icon on left, content on right */
+.media-card2{
+  display: grid;
+  grid-template-columns: 78px 1fr; /* left logo block + right content */
+  gap: 14px;
+  align-items: start;
+}
+
+.media-left{
+  width: 78px;
+  height: 78px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.04);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 10px 18px rgba(0,0,0,0.22);
+}
+
+.media-left img{
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.06);
+}
+
+.media-right{ min-width: 0; } /* prevents overflow */
+
+.media-top{
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.outlet{
+  font-weight: 950;
+  font-size: 14px;
+  letter-spacing: -0.01em;
+}
+
+/* In row layout, remove the small icon inside outlet header */
+.outlet img{ display: none; }
+
+.media-title{
+  margin-top: 6px;
+  font-size: 15px;
+  font-weight: 900;
+}
+
+@media (max-width: 600px){
+  .media-card2{
+    grid-template-columns: 64px 1fr;
+    gap: 12px;
+  }
+  .media-left{
+    width: 64px;
+    height: 64px;
+    border-radius: 14px;
+  }
+  .media-left img{
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+  }
+}
+
     .media-top{
       display: flex;
       align-items: flex-start;
@@ -1130,219 +1318,147 @@ Principal Inertia Components and Applications              </a>
         </section>
 
         <!-- Media Coverage (fancy) -->
-        <section id="InterviewsMedia">
-          <h2>Interviews &amp; Media</h2>
+  <section id="InterviewsMedia">
+  <h2>Interviews &amp; Media</h2>
+  <p class="subtle">Selected press coverage and policy citations.</p>
 
-          <div class="media-head">
-            <div class="kicker">Media Coverage</div>
-            <div class="note">Selected press, policy citations, and podcasts</div>
-          </div>
+  <div class="media-list">
 
-          <div class="press-strip">
-            <a class="press-chip" href="https://www.brookings.edu/articles/a-model-of-behavioral-manipulation" target="_blank" rel="noopener">
-              <img src="https://www.google.com/s2/favicons?domain=brookings.edu&sz=64" alt="Brookings">
-              Brookings <span class="tag">Coverage</span>
-            </a>
+    <!-- Brookings -->
+    <div class="media-row">
+      <div class="media-logo">
+        <img src="https://www.google.com/s2/favicons?domain=brookings.edu&sz=128" alt="Brookings">
+      </div>
+      <div>
+        <div class="media-outlet">Brookings</div>
+        <div class="media-title">
+          <a class="link" href="https://www.brookings.edu/articles/a-model-of-behavioral-manipulation" target="_blank">
+            A Model of Behavioral Manipulation
+          </a>
+        </div>
+        <div class="media-desc">
+          Coverage of:
+          <b>When Big Data Enables Behavioral Manipulation</b>,
+          AER: Insights (2025).
+        </div>
+        <div class="media-buttons">
+          <a class="media-btn primary" href="https://www.brookings.edu/articles/a-model-of-behavioral-manipulation" target="_blank">Read Article</a>
+          <a class="media-btn" href="https://www.nber.org/papers/w31872" target="_blank">View Paper</a>
+        </div>
+      </div>
+    </div>
 
-            <a class="press-chip" href="https://www.forbes.com/sites/johnkoetsier/2025/10/07/marketers-are-building-millions-of-ai-agents-what-does-that-mean-for-the-rest-of-us/" target="_blank" rel="noopener">
-              <img src="https://www.google.com/s2/favicons?domain=forbes.com&sz=64" alt="Forbes">
-              Forbes <span class="tag">Coverage</span>
-            </a>
+    <!-- VoxEU -->
+    <div class="media-row">
+      <div class="media-logo">
+        <img src="https://www.google.com/s2/favicons?domain=voxeu.org&sz=128" alt="VoxEU">
+      </div>
+      <div>
+        <div class="media-outlet">VoxEU</div>
+        <div class="media-title">
+          <a class="link" href="https://voxeu.org/article/can-we-have-too-much-data" target="_blank">
+            Can We Have Too Much Data?
+          </a>
+        </div>
+        <div class="media-desc">
+          Coverage of:
+          <b>Too Much Data: Prices and Inefficiencies in Data Markets</b>,
+          AEJ: Microeconomics (2022).
+        </div>
+        <div class="media-buttons">
+          <a class="media-btn primary" href="https://voxeu.org/article/can-we-have-too-much-data" target="_blank">Read Article</a>
+          <a class="media-btn" href="https://www.aeaweb.org/articles?id=10.1257/mic.20200200" target="_blank">View Paper</a>
+        </div>
+      </div>
+    </div>
 
-            <a class="press-chip" href="https://voxeu.org/article/can-we-have-too-much-data" target="_blank" rel="noopener">
-              <img src="https://www.google.com/s2/favicons?domain=voxeu.org&sz=64" alt="VoxEU">
-              VoxEU <span class="tag">Coverage</span>
-            </a>
+    <!-- Forbes -->
+    <div class="media-row">
+      <div class="media-logo">
+        <img src="https://www.google.com/s2/favicons?domain=forbes.com&sz=128" alt="Forbes">
+      </div>
+      <div>
+        <div class="media-outlet">Forbes</div>
+        <div class="media-title">
+          <a class="link" href="https://www.forbes.com/sites/johnkoetsier/2025/10/07/marketers-are-building-millions-of-ai-agents-what-does-that-mean-for-the-rest-of-us/" target="_blank">
+            Marketers Are Building Millions of AI Agents
+          </a>
+        </div>
+        <div class="media-desc">
+          Referencing research on data markets and AI-driven personalization.
+        </div>
+        <div class="media-buttons">
+          <a class="media-btn primary" href="https://www.forbes.com/sites/johnkoetsier/2025/10/07/marketers-are-building-millions-of-ai-agents-what-does-that-mean-for-the-rest-of-us/" target="_blank">Read Article</a>
+        </div>
+      </div>
+    </div>
 
-            <a class="press-chip" href="https://www.whitehouse.gov/wp-content/uploads/2023/03/erp-2023.pdf" target="_blank" rel="noopener">
-              <img src="https://www.google.com/s2/favicons?domain=whitehouse.gov&sz=64" alt="White House">
-              White House <span class="tag">Policy</span>
-            </a>
+    <!-- Fuqua Insights -->
+    <div class="media-row">
+      <div class="media-logo">
+        <img src="https://www.google.com/s2/favicons?domain=fuqua.duke.edu&sz=128" alt="Fuqua Insights">
+      </div>
+      <div>
+        <div class="media-outlet">Fuqua Insights</div>
+        <div class="media-title">
+          <a class="link" href="https://www.fuqua.duke.edu/duke-fuqua-insights/how-ai-could-potentially-manipulate-consumers" target="_blank">
+            How AI Could Potentially Manipulate Consumers
+          </a>
+        </div>
+        <div class="media-desc">
+          Feature story on behavioral manipulation and AI systems.
+        </div>
+        <div class="media-buttons">
+          <a class="media-btn primary" href="https://www.fuqua.duke.edu/duke-fuqua-insights/how-ai-could-potentially-manipulate-consumers" target="_blank">Read Article</a>
+        </div>
+      </div>
+    </div>
 
-            <a class="press-chip" href="https://www.fuqua.duke.edu/duke-fuqua-insights/how-ai-could-potentially-manipulate-consumers" target="_blank" rel="noopener">
-              <img src="https://www.google.com/s2/favicons?domain=fuqua.duke.edu&sz=64" alt="Fuqua">
-              Fuqua Insights <span class="tag">Coverage</span>
-            </a>
+    <!-- Fuqua Podcast -->
+    <div class="media-row">
+      <div class="media-logo">
+        <img src="https://www.google.com/s2/favicons?domain=fuqua.duke.edu&sz=128" alt="Fuqua Podcast">
+      </div>
+      <div>
+        <div class="media-outlet">Fuqua Podcast</div>
+        <div class="media-title">
+          <a class="link" href="https://www.fuqua.duke.edu/podcast/why-is-your-data-worth-so-little" target="_blank">
+            Why Is Your Data Worth So Little?
+          </a>
+        </div>
+        <div class="media-desc">
+          Podcast discussion on data value and inefficiencies in data markets.
+        </div>
+        <div class="media-buttons">
+          <a class="media-btn primary" href="https://www.fuqua.duke.edu/podcast/why-is-your-data-worth-so-little" target="_blank">Listen</a>
+        </div>
+      </div>
+    </div>
 
-            <a class="press-chip" href="https://www.fuqua.duke.edu/podcast/why-is-your-data-worth-so-little" target="_blank" rel="noopener">
-              <img src="https://www.google.com/s2/favicons?domain=fuqua.duke.edu&sz=64" alt="Fuqua Podcast">
-              Fuqua Podcast <span class="tag">Podcast</span>
-            </a>
-          </div>
+    <!-- White House Citation -->
+    <div class="media-row">
+      <div class="media-logo">
+        <img src="https://www.google.com/s2/favicons?domain=whitehouse.gov&sz=128" alt="White House">
+      </div>
+      <div>
+        <div class="media-outlet">The White House</div>
+        <div class="media-title">
+          <a class="link" href="https://www.whitehouse.gov/wp-content/uploads/2023/03/erp-2023.pdf" target="_blank">
+            2023 Economic Report of the President
+          </a>
+        </div>
+        <div class="media-desc">
+          Cited research on data markets and pricing inefficiencies.
+        </div>
+        <div class="media-buttons">
+          <a class="media-btn primary" href="https://www.whitehouse.gov/wp-content/uploads/2023/03/erp-2023.pdf" target="_blank">View Report</a>
+        </div>
+      </div>
+    </div>
 
-          <div class="media-featured">
-            <!-- Featured: Behavioral Manipulation -->
-            <div class="media-card2">
-              <div class="media-top">
-                <div class="outlet">
-                  <img src="https://www.google.com/s2/favicons?domain=brookings.edu&sz=64" alt="Brookings">
-                  <span>Brookings</span>
-                </div>
-              </div>
+  </div>
+</section>
 
-              <div class="media-title">
-                <a class="link" href="https://www.brookings.edu/articles/a-model-of-behavioral-manipulation" target="_blank" rel="noopener">
-                  A model of behavioral manipulation
-                </a>
-              </div>
-
-              <div class="media-blurb">
-                Coverage of our work on how big data can enable behavioral manipulation.
-              </div>
-
-              <div class="badges">
-                <span class="badge">AI &amp; Manipulation</span>
-                <span class="badge">Behavioral Econ</span>
-              </div>
-
-              <div class="media-actions">
-                <a class="mini-btn primary" href="https://www.brookings.edu/articles/a-model-of-behavioral-manipulation" target="_blank" rel="noopener">Read</a>
-                <a class="mini-btn" href="https://www.nber.org/papers/w31872" target="_blank" rel="noopener">Paper (NBER)</a>
-              </div>
-
-              <div class="media-blurb" style="margin-top:10px;">
-                Highlights:
-                Daron Acemoglu, Ali Makhdoumi, Azarakhsh Malekian, and Asuman Ozdaglar,
-                <a class="link" href="https://www.nber.org/papers/w31872" target="_blank" rel="noopener">When Big Data Enables Behavioral Manipulation</a>,
-                <b>AER: Insights</b>, 2025.
-              </div>
-            </div>
-
-            <!-- Featured: Data markets -->
-            <div class="media-card2">
-              <div class="media-top">
-                <div class="outlet">
-                  <img src="https://www.google.com/s2/favicons?domain=voxeu.org&sz=64" alt="VoxEU">
-                  <span>VoxEU</span>
-                </div>
-              </div>
-
-              <div class="media-title">
-                <a class="link" href="https://voxeu.org/article/can-we-have-too-much-data" target="_blank" rel="noopener">
-                  Can we have too much data?
-                </a>
-              </div>
-
-              <div class="media-blurb">
-                Discussion of inefficiencies and pricing distortions in data markets.
-              </div>
-
-              <div class="badges">
-                <span class="badge">Data Markets</span>
-                <span class="badge">Market Design</span>
-              </div>
-
-              <div class="media-actions">
-                <a class="mini-btn primary" href="https://voxeu.org/article/can-we-have-too-much-data" target="_blank" rel="noopener">Read</a>
-                <a class="mini-btn" href="https://www.aeaweb.org/articles?id=10.1257/mic.20200200" target="_blank" rel="noopener">Paper (AEJ)</a>
-              </div>
-
-              <div class="media-blurb" style="margin-top:10px;">
-                Highlights:
-                Daron Acemoglu, Ali Makhdoumi, Azarakhsh Malekian, and Asuman Ozdaglar,
-                <a class="link" href="https://www.aeaweb.org/articles?id=10.1257/mic.20200200" target="_blank" rel="noopener">Too Much Data: Prices and Inefficiencies in Data Markets</a>,
-                <b>American Economic Journal: Microeconomics</b>, 2022.
-              </div>
-            </div>
-          </div>
-
-          <div class="media-grid">
-            <div class="media-card2">
-              <div class="media-top">
-                <div class="outlet">
-                  <img src="https://www.google.com/s2/favicons?domain=fuqua.duke.edu&sz=64" alt="Fuqua Insights">
-                  <span>Fuqua Insights</span>
-                </div>
-              </div>
-              <div class="media-title">
-                <a class="link" href="https://www.fuqua.duke.edu/duke-fuqua-insights/how-ai-could-potentially-manipulate-consumers" target="_blank" rel="noopener">
-                  How AI could potentially manipulate consumers
-                </a>
-              </div>
-              <div class="media-actions">
-                <a class="mini-btn primary" href="https://www.fuqua.duke.edu/duke-fuqua-insights/how-ai-could-potentially-manipulate-consumers" target="_blank" rel="noopener">Read</a>
-                <a class="mini-btn" href="https://www.nber.org/papers/w31872" target="_blank" rel="noopener">Paper</a>
-              </div>
-            </div>
-
-            <div class="media-card2">
-              <div class="media-top">
-                <div class="outlet">
-                  <img src="https://www.google.com/s2/favicons?domain=fuqua.duke.edu&sz=64" alt="Fuqua Insights">
-                  <span>Fuqua Insights</span>
-                </div>
-              </div>
-              <div class="media-title">
-                <a class="link" href="https://www.fuqua.duke.edu/duke-fuqua-insights/ali-makhdoumi-how-overcome-harms-excessive-data-sharing" target="_blank" rel="noopener">
-                  How to overcome the harms of excessive data sharing
-                </a>
-              </div>
-              <div class="media-actions">
-                <a class="mini-btn primary" href="https://www.fuqua.duke.edu/duke-fuqua-insights/ali-makhdoumi-how-overcome-harms-excessive-data-sharing" target="_blank" rel="noopener">Read</a>
-                <a class="mini-btn" href="https://www.aeaweb.org/articles?id=10.1257/mic.20200200" target="_blank" rel="noopener">Paper</a>
-              </div>
-            </div>
-
-            <div class="media-card2">
-              <div class="media-top">
-                <div class="outlet">
-                  <img src="https://www.google.com/s2/favicons?domain=fuqua.duke.edu&sz=64" alt="Fuqua Podcast">
-                  <span>Fuqua Podcast</span>
-                </div>
-              </div>
-              <div class="media-title">
-                <a class="link" href="https://www.fuqua.duke.edu/podcast/why-is-your-data-worth-so-little" target="_blank" rel="noopener">
-                  Why is your data worth so little?
-                </a>
-              </div>
-              <div class="media-blurb">
-                Podcast episode on data value and data markets.
-              </div>
-              <div class="media-actions">
-                <a class="mini-btn primary" href="https://www.fuqua.duke.edu/podcast/why-is-your-data-worth-so-little" target="_blank" rel="noopener">Listen</a>
-                <a class="mini-btn" href="https://www.aeaweb.org/articles?id=10.1257/mic.20200200" target="_blank" rel="noopener">Paper</a>
-              </div>
-            </div>
-
-            <div class="media-card2">
-              <div class="media-top">
-                <div class="outlet">
-                  <img src="https://www.google.com/s2/favicons?domain=forbes.com&sz=64" alt="Forbes">
-                  <span>Forbes</span>
-                </div>
-              </div>
-              <div class="media-title">
-                <a class="link" href="https://www.forbes.com/sites/johnkoetsier/2025/10/07/marketers-are-building-millions-of-ai-agents-what-does-that-mean-for-the-rest-of-us/" target="_blank" rel="noopener">
-                  Marketers are building millions of AI agents...
-                </a>
-              </div>
-              <div class="media-actions">
-                <a class="mini-btn primary" href="https://www.forbes.com/sites/johnkoetsier/2025/10/07/marketers-are-building-millions-of-ai-agents-what-does-that-mean-for-the-rest-of-us/" target="_blank" rel="noopener">Read</a>
-                <a class="mini-btn" href="https://www.aeaweb.org/articles?id=10.1257/mic.20200200" target="_blank" rel="noopener">Paper</a>
-              </div>
-            </div>
-
-            <div class="media-card2">
-              <div class="media-top">
-                <div class="outlet">
-                  <img src="https://www.google.com/s2/favicons?domain=whitehouse.gov&sz=64" alt="White House">
-                  <span>The White House</span>
-                </div>
-              </div>
-              <div class="media-title">
-                <a class="link" href="https://www.whitehouse.gov/wp-content/uploads/2023/03/erp-2023.pdf" target="_blank" rel="noopener">
-                  2023 Economic Report of the President (citation)
-                </a>
-              </div>
-              <div class="media-blurb">
-                Cited: <a class="link" href="https://www.aeaweb.org/articles?id=10.1257/mic.20200200" target="_blank" rel="noopener">Too Much Data</a>.
-              </div>
-              <div class="media-actions">
-                <a class="mini-btn primary" href="https://www.whitehouse.gov/wp-content/uploads/2023/03/erp-2023.pdf" target="_blank" rel="noopener">Open PDF</a>
-              </div>
-            </div>
-          </div>
-        </section>
 
         <div style="margin-top:18px; color:var(--muted2); font-size:12.5px;">
           © <span id="year"></span> Ali Makhdoumi
