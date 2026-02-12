@@ -725,7 +725,7 @@
 
     // Highlight active nav link based on scroll
     document.addEventListener('DOMContentLoaded', () => {
-      const sections = ['home','WorkingPapers','PublishedPapers','Conferences','Teaching','InterviewsMedia']
+const sections = ['home','WorkingPapers','PublishedPapers','Conferences','Patents','Teaching','InterviewsMedia']
         .map(id => document.getElementById(id)).filter(Boolean);
 
       const links = Array.from(document.querySelectorAll('.nav a'));
@@ -759,6 +759,7 @@
     <a href="#WorkingPapers" onclick="toggleMenu()">Working Papers</a>
     <a href="#PublishedPapers" onclick="toggleMenu()">Published Papers</a>
     <a href="#Conferences" onclick="toggleMenu()">Conference Papers</a>
+    <a href="#Patents" onclick="toggleMenu()">Patents</a>
     <a href="#Teaching" onclick="toggleMenu()">Teaching</a>
     <a href="#InterviewsMedia" onclick="toggleMenu()">Interviews &amp; Media</a>
   </div>
@@ -776,6 +777,7 @@
         <a href="#WorkingPapers"><span class="dot"></span> Working Papers</a>
         <a href="#PublishedPapers"><span class="dot"></span> Published Papers</a>
         <a href="#Conferences"><span class="dot"></span> Conference Papers</a>
+        <a href="#Patents"><span class="dot"></span> Patents</a>
         <a href="#Teaching"><span class="dot"></span> Teaching</a>
         <a href="#InterviewsMedia"><span class="dot"></span> Interviews &amp; Media</a>
       </nav>
@@ -1316,6 +1318,30 @@ Principal Inertia Components and Applications              </a>
             <div class="item"><span>Modeling and Decision Analysis</span> — Fuqua (MMS)</div>
           </div>
         </section>
+
+<section id="Patents">
+  <h2>Patents</h2>
+  <!--<p class="subtle"> Patents.</p>-->
+
+  <div class="paper">
+    <div class="title">Method and apparatus for utility-aware privacy preserving mapping through additive noise</div>
+    <div class="authors">With N. Fawaz</div>
+    <div class="venue">US Patent <b>US20160210463 A1</b></div>
+  </div>
+
+  <div class="paper">
+    <div class="title">Method and apparatus for utility-aware privacy preserving mapping in view of collusion and composition</div>
+    <div class="authors">With N. Fawaz</div>
+    <div class="venue">US Patent <b>US20160203334 A1</b></div>
+  </div>
+
+  <div class="paper">
+    <div class="title">Method and apparatus for utility-aware privacy preserving mapping against inference attacks</div>
+    <div class="authors">With N. Fawaz</div>
+    <div class="venue">US Patent <b>US20160203333 A1</b></div>
+  </div>
+</section>
+
 
         <!-- Media Coverage (fancy) -->
   <section id="InterviewsMedia">
