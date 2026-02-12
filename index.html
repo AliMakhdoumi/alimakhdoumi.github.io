@@ -1,14 +1,9 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Ali Makhdoumi</title>
-
-  <!-- If you keep jemdoc.css, it may fight with the styling below.
-       You can comment this out if you want the "modern" look to fully control everything. -->
-  <!-- <link rel="stylesheet" href="jemdoc.css" type="text/css" /> -->
 
   <!-- Optional: a clean modern font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -140,7 +135,6 @@
     /* Main content */
     .content{
       padding: 34px 34px 60px 34px;
-      /* This fixes “text should start more to the right”: extra left padding + consistent grid. */
     }
     .wrap{
       max-width: var(--content-max);
@@ -264,12 +258,6 @@
     }
     .paper .venue b{ color: rgba(255,255,255,0.92); }
 
-    .two-col{
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
     /* Teaching list */
     .list{
       display: grid;
@@ -335,8 +323,209 @@
       .hero{ grid-template-columns: 1fr; }
     }
 
-    /* Anchor offset (so headings aren’t hidden under sticky topbar on mobile) */
+    /* Anchor offset */
     [id]{ scroll-margin-top: 80px; }
+
+    /* ==========================
+       Media Coverage: “fancier”
+       ========================== */
+    #InterviewsMedia h2{
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+
+    .media-head{
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 2px 0 12px 0;
+    }
+    .media-head .kicker{
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 900;
+      color: rgba(255,255,255,0.92);
+    }
+    .media-head .note{
+      font-size: 12.5px;
+      color: var(--muted2);
+    }
+
+    .press-strip{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 0 0 16px 0;
+    }
+
+    .press-chip{
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+
+      color: rgba(255,255,255,0.95);
+      font-weight: 900;
+      font-size: 13.5px;
+      letter-spacing: -0.01em;
+
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.16);
+      box-shadow: 0 10px 18px rgba(0,0,0,0.22);
+
+      transition: transform .16s ease, border-color .16s ease, background .16s ease;
+    }
+    .press-chip:before{
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: 999px;
+      padding: 1px;
+      background: linear-gradient(90deg, rgba(125,211,252,0.65), rgba(167,139,250,0.55));
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0.55;
+      pointer-events: none;
+    }
+    .press-chip:after{
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 999px;
+      background: radial-gradient(600px 120px at 20% 20%, rgba(255,255,255,0.10), transparent 60%);
+      opacity: 0.6;
+      pointer-events: none;
+    }
+    .press-chip:hover{
+      transform: translateY(-2px);
+      background: rgba(125,211,252,0.10);
+      border-color: rgba(125,211,252,0.28);
+    }
+    .press-chip img{
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.06);
+    }
+    .press-chip .tag{
+      margin-left: 6px;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.70);
+    }
+
+    .media-featured{
+  display: grid;
+  grid-template-columns: 1fr;   /* <-- one per row */
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+    @media (max-width: 980px){
+      .media-featured{ grid-template-columns: 1fr; }
+    }
+
+    .media-grid{
+      display: grid;
+      gap: 12px;
+    }
+
+    .media-card2{
+      position: relative;
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025));
+      box-shadow: 0 12px 26px rgba(0,0,0,0.28);
+      overflow: hidden;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+    .media-card2:hover{
+      transform: translateY(-2px);
+      border-color: rgba(125,211,252,0.22);
+      background: linear-gradient(180deg, rgba(125,211,252,0.08), rgba(255,255,255,0.02));
+    }
+    .media-top{
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .outlet{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      letter-spacing: -0.01em;
+    }
+    .outlet img{
+      width: 26px; height: 26px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.04);
+    }
+    .media-title{
+      margin-top: 8px;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: rgba(255,255,255,0.96);
+    }
+    .media-blurb{
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 13.5px;
+    }
+    .badges{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .badge{
+      font-size: 12px;
+      font-weight: 800;
+      color: rgba(255,255,255,0.86);
+      padding: 6px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.03);
+    }
+    .media-actions{
+      margin-top: 12px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .mini-btn{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.03);
+      color: rgba(255,255,255,0.92);
+      font-weight: 900;
+      font-size: 12.5px;
+    }
+    .mini-btn:hover{
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.20);
+    }
+    .mini-btn.primary{
+      border-color: rgba(125,211,252,0.25);
+      background: rgba(125,211,252,0.12);
+    }
   </style>
 
   <script>
@@ -348,7 +537,9 @@
 
     // Highlight active nav link based on scroll
     document.addEventListener('DOMContentLoaded', () => {
-      const sections = ['home','WorkingPapers','PublishedPapers','Conferences','Teaching'].map(id => document.getElementById(id)).filter(Boolean);
+      const sections = ['home','WorkingPapers','PublishedPapers','Conferences','Teaching','InterviewsMedia']
+        .map(id => document.getElementById(id)).filter(Boolean);
+
       const links = Array.from(document.querySelectorAll('.nav a'));
 
       const setActive = (id) => {
@@ -356,13 +547,11 @@
       };
 
       const observer = new IntersectionObserver((entries) => {
-        // pick the most visible section
         const visible = entries.filter(e => e.isIntersecting).sort((a,b)=> b.intersectionRatio - a.intersectionRatio)[0];
         if (visible?.target?.id) setActive(visible.target.id);
       }, { root: null, threshold: [0.2, 0.35, 0.5, 0.7] });
 
       sections.forEach(s => observer.observe(s));
-      // default
       setActive('home');
     });
   </script>
@@ -376,13 +565,14 @@
       <button class="menu-btn" type="button" onclick="toggleMenu()">Menu</button>
     </div>
   </div>
+
   <div class="mobile-drawer" id="mobileDrawer">
-    <!-- FIX #1: jump links should be in-page anchors -->
     <a href="#home" onclick="toggleMenu()">Home</a>
     <a href="#WorkingPapers" onclick="toggleMenu()">Working Papers</a>
     <a href="#PublishedPapers" onclick="toggleMenu()">Published Papers</a>
     <a href="#Conferences" onclick="toggleMenu()">Conference Papers</a>
     <a href="#Teaching" onclick="toggleMenu()">Teaching</a>
+    <a href="#InterviewsMedia" onclick="toggleMenu()">Interviews &amp; Media</a>
   </div>
 
   <div class="layout">
@@ -394,12 +584,12 @@
       </div>
 
       <nav class="nav" aria-label="Section navigation">
-        <!-- FIX #1: use # anchors (not index.html#...) so jump links work -->
         <a href="#home" class="active"><span class="dot"></span> Home</a>
         <a href="#WorkingPapers"><span class="dot"></span> Working Papers</a>
         <a href="#PublishedPapers"><span class="dot"></span> Published Papers</a>
         <a href="#Conferences"><span class="dot"></span> Conference Papers</a>
         <a href="#Teaching"><span class="dot"></span> Teaching</a>
+        <a href="#InterviewsMedia"><span class="dot"></span> Interviews &amp; Media</a>
       </nav>
 
       <div class="small-links">
@@ -420,7 +610,6 @@
 
         <section id="home" class="hero" style="margin-top:0;">
           <div class="photo">
-            <!-- Keep as local file in same folder -->
             <img src="AliM.png" alt="Ali Makhdoumi" />
           </div>
 
@@ -452,8 +641,6 @@
 
             <div class="cta">
               <a class="btn primary" href="https://scholar.google.com/citations?user=Fm5_a0oAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener">Google Scholar</a>
-              <!-- Optional: add CV when you want -->
-              <!-- <a class="btn" href="Ali_Makhdoumi_CV.pdf" target="_blank" rel="noopener">CV</a> -->
               <a class="btn" href="#WorkingPapers">Jump to papers ↓</a>
             </div>
 
@@ -463,471 +650,473 @@
           </div>
         </section>
 
+        <!-- Working Papers (complete list from your original) -->
         <section id="WorkingPapers">
-          <section id="WorkingPapers">
-  <h2>Working Papers</h2>
-  <p class="subtle"> List of working papers and manuscripts under review.</p>
+          <h2>Working Papers</h2>
+          <p class="subtle"> List of working papers and manuscripts under review.</p>
 
-  <div class="paper">
-    <div class="title">
-      <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6220718" target="_blank">
-        Optimal Mechanism Design with Post-Allocation Signal
-      </a>
-    </div>
-    <div class="authors">With Saeed Alaei, Ali Daei Naby, and Azarakhsh Malekian</div>
-    <div class="venue">Working paper, 2026</div>
-  </div>
+          <div class="paper">
+            <div class="title">
+              <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6220718" target="_blank">
+                Optimal Mechanism Design with Post-Allocation Signal
+              </a>
+            </div>
+            <div class="authors">With Saeed Alaei, Ali Daei Naby, and Azarakhsh Malekian</div>
+            <div class="venue">Working paper, 2026</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">Clearing Multi-Unit Markets with Simple Pricing</div>
-    <div class="authors">With Xinchang Wang and Sasa Pekec</div>
-    <div class="venue">Working paper, 2026</div>
-  </div>
+          <div class="paper">
+            <div class="title">Clearing Multi-Unit Markets with Simple Pricing</div>
+            <div class="authors">With Xinchang Wang and Sasa Pekec</div>
+            <div class="venue">Working paper, 2026</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">
-      <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6212838" target="_blank">
-        Dynamic Learning and Optimal Advertising Mechanism for LLM Platforms
-      </a>
-    </div>
-    <div class="authors">With Saeed Alaei and Azarakhsh Malekian</div>
-    <div class="venue">Working paper, 2026</div>
-  </div>
+          <div class="paper">
+            <div class="title">
+              <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6212838" target="_blank">
+                Dynamic Learning and Optimal Advertising Mechanism for LLM Platforms
+              </a>
+            </div>
+            <div class="authors">With Saeed Alaei and Azarakhsh Malekian</div>
+            <div class="venue">Working paper, 2026</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">
-      <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5297868" target="_blank">
-        Incentivizing Data Collaboration: A Mechanism Design Approach
-      </a>
-    </div>
-    <div class="authors">With Saeed Alaei, Ali Daei Naby, and Azarakhsh Malekian</div>
-    <div class="venue">Working paper, 2025</div>
-  </div>
+          <div class="paper">
+            <div class="title">
+              <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5297868" target="_blank">
+                Incentivizing Data Collaboration: A Mechanism Design Approach
+              </a>
+            </div>
+            <div class="authors">With Saeed Alaei, Ali Daei Naby, and Azarakhsh Malekian</div>
+            <div class="venue">Working paper, 2025</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">
-      <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5139835" target="_blank">
-        Mechanism Design with Post-Allocation Inspection and Exclusion Penalties
-      </a>
-    </div>
-    <div class="authors">With Xuanjie Li and Sasa Pekec</div>
-    <div class="venue">Working paper, 2025</div>
-  </div>
+          <div class="paper">
+            <div class="title">
+              <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5139835" target="_blank">
+                Mechanism Design with Post-Allocation Inspection and Exclusion Penalties
+              </a>
+            </div>
+            <div class="authors">With Xuanjie Li and Sasa Pekec</div>
+            <div class="venue">Working paper, 2025</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">
-      <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5143773" target="_blank">
-        Approximately Optimal Mechanism for Multiunit Demand Buyers with Post-Allocation Inspection
-      </a>
-    </div>
-    <div class="authors">With Xuanjie Li and Alex Belloni</div>
-    <div class="venue"><b>Accepted:</b> ACM EC 2025 (extended abstract) · Working paper, 2025</div>
-  </div>
+          <div class="paper">
+            <div class="title">
+              <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5143773" target="_blank">
+                Approximately Optimal Mechanism for Multiunit Demand Buyers with Post-Allocation Inspection
+              </a>
+            </div>
+            <div class="authors">With Xuanjie Li and Alex Belloni</div>
+            <div class="venue"><b>Accepted:</b> ACM EC 2025 (extended abstract) · Working paper, 2025</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">
-      <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4727167" target="_blank">
-        On Three-Layer Data Markets
-      </a>
-    </div>
-    <div class="authors">With Alireza Fallah, Michael I. Jordan, Azarakhsh Malekian</div>
-    <div class="venue"><b>R&amp;R:</b> Quantitative Economics, 2025</div>
-  </div>
+          <div class="paper">
+            <div class="title">
+              <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4727167" target="_blank">
+                On Three-Layer Data Markets
+              </a>
+            </div>
+            <div class="authors">With Alireza Fallah, Michael I. Jordan, Azarakhsh Malekian</div>
+            <div class="venue"><b>R&amp;R:</b> Quantitative Economics, 2025</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">
-      <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4723813" target="_blank">
-        The Limits of Price Discrimination Under Privacy Constraints
-      </a>
-    </div>
-    <div class="authors">With Alireza Fallah, Michael I. Jordan, Azarakhsh Malekian</div>
-    <div class="venue">Working paper, 2024</div>
-  </div>
+          <div class="paper">
+            <div class="title">
+              <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4723813" target="_blank">
+                The Limits of Price Discrimination Under Privacy Constraints
+              </a>
+            </div>
+            <div class="authors">With Alireza Fallah, Michael I. Jordan, Azarakhsh Malekian</div>
+            <div class="venue">Working paper, 2024</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">
-      <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4658797" target="_blank">
-        The Feedback Loop of Statistical Discrimination
-      </a>
-    </div>
-    <div class="authors">With Jackie Baek</div>
-    <div class="venue"><b>Major Revision:</b> Management Science, 2025</div>
-  </div>
+          <div class="paper">
+            <div class="title">
+              <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4658797" target="_blank">
+                The Feedback Loop of Statistical Discrimination
+              </a>
+            </div>
+            <div class="authors">With Jackie Baek</div>
+            <div class="venue"><b>Major Revision:</b> Management Science, 2025</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">
-      <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4333457" target="_blank">
-        How Good Are Privacy Guarantees? Platform Architecture and Violation of User Privacy
-      </a>
-    </div>
-    <div class="authors">With Daron Acemoglu, Alireza Fallah, Azarakhsh Malekian, Asuman Ozdaglar</div>
-    <div class="venue"><b>Major Revision:</b> Mathematics of Operations Research, 2025 · WINE 2023</div>
-  </div>
+          <div class="paper">
+            <div class="title">
+              <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4333457" target="_blank">
+                How Good Are Privacy Guarantees? Platform Architecture and Violation of User Privacy
+              </a>
+            </div>
+            <div class="authors">With Daron Acemoglu, Alireza Fallah, Azarakhsh Malekian, Asuman Ozdaglar</div>
+            <div class="venue"><b>Major Revision:</b> Mathematics of Operations Research, 2025 · WINE 2023</div>
+          </div>
 
-  
-
-  
-
-  
-
-  <div class="paper">
-    <div class="title">
-      <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4311351" target="_blank">
-        Bridging Central and Local Differential Privacy in Data Acquisition Mechanisms
-      </a>
-    </div>
-    <div class="authors">With Alireza Fallah, Azarakhsh Malekian, Asuman Ozdaglar</div>
-    <div class="venue"><b>Major Revision:</b> Management Science, 2024 · NeurIPS 2022</div>
-  </div>
-
-  
-
-</section>
-
+          <div class="paper">
+            <div class="title">
+              <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4311351" target="_blank">
+                Bridging Central and Local Differential Privacy in Data Acquisition Mechanisms
+              </a>
+            </div>
+            <div class="authors">With Alireza Fallah, Azarakhsh Malekian, Asuman Ozdaglar</div>
+            <div class="venue"><b>Major Revision:</b> Management Science, 2024 · NeurIPS 2022</div>
+          </div>
         </section>
 
+        <!-- Published Papers (complete list from your original) -->
         <section id="PublishedPapers">
-  <h2>Published Papers</h2>
-  <p class="subtle">Journal publications.</p>
+          <h2>Published Papers</h2>
+          <p class="subtle">Journal publications.</p>
 
-  <div class="paper">
-    <div class="title">
-      <a class="link" href="https://economics.mit.edu/sites/default/files/2023-05/A%20Model%20of%20Behavioral%20Manipulation.pdf" target="_blank">
-        A Model of Behavioral Manipulation
-      </a>
-    </div>
-    <div class="authors">With Daron Acemoglu, Azarakhsh Malekian, and Asuman Ozdaglar</div>
-    <div class="venue"><b>American Economic Review: Insights</b>, 2025</div>
-  </div>
+          <div class="paper">
+            <div class="title">
+              <a class="link" href="https://economics.mit.edu/sites/default/files/2023-05/A%20Model%20of%20Behavioral%20Manipulation.pdf" target="_blank">
+                A Model of Behavioral Manipulation
+              </a>
+            </div>
+            <div class="authors">With Daron Acemoglu, Azarakhsh Malekian, and Asuman Ozdaglar</div>
+            <div class="venue"><b>American Economic Review: Insights</b>, 2025</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">
-      <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4176274" target="_blank">
-        Multi-Item Order Fulfillment Revisited: LP Formulation and Prophet Inequality
-      </a>
-    </div>
-    <div class="authors">With Ayoub Amil and Yehua Wei</div>
-    <div class="venue"><b>Management Science</b>, 2025</div>
-  </div>
+          <div class="paper">
+            <div class="title">
+              <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4176274" target="_blank">
+                Multi-Item Order Fulfillment Revisited: LP Formulation and Prophet Inequality
+              </a>
+            </div>
+            <div class="authors">With Ayoub Amil and Yehua Wei</div>
+            <div class="venue"><b>Management Science</b>, 2025</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">
-      <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3855810" target="_blank">
-        Revenue Maximization Under Unknown Private Values With Non-Obligatory Inspection
-      </a>
-    </div>
-    <div class="authors">With Saeed Alaei and Azarakhsh Malekian</div>
-    <div class="venue"><b>Operations Research</b>, 2024</div>
-  </div>
+          <div class="paper">
+            <div class="title">
+              <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3855810" target="_blank">
+                Revenue Maximization Under Unknown Private Values With Non-Obligatory Inspection
+              </a>
+            </div>
+            <div class="authors">With Saeed Alaei and Azarakhsh Malekian</div>
+            <div class="venue"><b>Operations Research</b>, 2024</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">
-      <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3700525" target="_blank">
-        Optimal Auction Design with Deferred Inspection and Reward
-      </a>
-    </div>
-    <div class="authors">With Alexandre Belloni, Saeed Alaei, and Azarakhsh Malekian</div>
-    <div class="venue"><b>Operations Research</b>, 2024</div>
-  </div>
+          <div class="paper">
+            <div class="title">
+              <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3700525" target="_blank">
+                Optimal Auction Design with Deferred Inspection and Reward
+              </a>
+            </div>
+            <div class="authors">With Alexandre Belloni, Saeed Alaei, and Azarakhsh Malekian</div>
+            <div class="venue"><b>Operations Research</b>, 2024</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">
-      <a class="link" href="https://arxiv.org/abs/2201.03968" target="_blank">
-        Optimal and Differentially Private Data Acquisition: Central and Local Mechanisms
-      </a>
-    </div>
-    <div class="authors">With Alireza Fallah, Azarakhsh Malekian, Asuman Ozdaglar</div>
-    <div class="venue"><b>Operations Research</b>, 2023</div>
-  </div>
+          <div class="paper">
+            <div class="title">
+              <a class="link" href="https://arxiv.org/abs/2201.03968" target="_blank">
+                Optimal and Differentially Private Data Acquisition: Central and Local Mechanisms
+              </a>
+            </div>
+            <div class="authors">With Alireza Fallah, Azarakhsh Malekian, Asuman Ozdaglar</div>
+            <div class="venue"><b>Operations Research</b>, 2023</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">
-      <a class="link" href="https://pubsonline.informs.org/doi/abs/10.1287/opre.2023.2468" target="_blank">
-        Optimal Subscription Planning for Digital Goods
-      </a>
-    </div>
-    <div class="authors">With Saeed Alaei and Azarakhsh Malekian</div>
-    <div class="venue"><b>Operations Research</b>, 2023</div>
-  </div>
+          <div class="paper">
+            <div class="title">
+              <a class="link" href="https://pubsonline.informs.org/doi/abs/10.1287/opre.2023.2468" target="_blank">
+                Optimal Subscription Planning for Digital Goods
+              </a>
+            </div>
+            <div class="authors">With Saeed Alaei and Azarakhsh Malekian</div>
+            <div class="venue"><b>Operations Research</b>, 2023</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">
-      <a class="link" href="https://www.nber.org/papers/w27483" target="_blank">
-        Testing, Voluntary Social Distancing and the Spread of an Infection
-      </a>
-    </div>
-    <div class="authors">With Daron Acemoglu, Azarakhsh Malekian, and Asuman Ozdaglar</div>
-    <div class="venue"><b>Operations Research</b>, 2023</div>
-  </div>
+          <div class="paper">
+            <div class="title">
+              <a class="link" href="https://www.nber.org/papers/w27483" target="_blank">
+                Testing, Voluntary Social Distancing and the Spread of an Infection
+              </a>
+            </div>
+            <div class="authors">With Daron Acemoglu, Azarakhsh Malekian, and Asuman Ozdaglar</div>
+            <div class="venue"><b>Operations Research</b>, 2023</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">
-      <a class="link" href="https://pubsonline.informs.org/doi/abs/10.1287/mnsc.2022.4534" target="_blank">
-        Providing Data Samples for Free
-      </a>
-    </div>
-    <div class="authors">With Kimon Drakopoulos</div>
-    <div class="venue"><b>Management Science</b>, 2022</div>
-  </div>
+          <div class="paper">
+            <div class="title">
+              <a class="link" href="https://pubsonline.informs.org/doi/abs/10.1287/mnsc.2022.4534" target="_blank">
+                Providing Data Samples for Free
+              </a>
+            </div>
+            <div class="authors">With Kimon Drakopoulos</div>
+            <div class="venue"><b>Management Science</b>, 2022</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">
-      <a class="link" href="https://pubsonline.informs.org/doi/abs/10.1287/mnsc.2022.4307" target="_blank">
-        Revenue-Sharing Allocation Strategies for Two-Sided Media Platforms
-      </a>
-    </div>
-    <div class="authors">With Sasa Pekec, Saeed Alaei, and Azarakhsh Malekian</div>
-    <div class="venue"><b>Management Science</b>, 2022</div>
-  </div>
+          <div class="paper">
+            <div class="title">
+              <a class="link" href="https://pubsonline.informs.org/doi/abs/10.1287/mnsc.2022.4307" target="_blank">
+                Revenue-Sharing Allocation Strategies for Two-Sided Media Platforms
+              </a>
+            </div>
+            <div class="authors">With Sasa Pekec, Saeed Alaei, and Azarakhsh Malekian</div>
+            <div class="venue"><b>Management Science</b>, 2022</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">
-      <a class="link" href="https://onlinelibrary.wiley.com/doi/full/10.3982/ECTA15847" target="_blank">
-        Learning From Reviews: The Selection Effect and the Speed of Learning
-      </a>
-    </div>
-    <div class="authors">With Daron Acemoglu, Azarakhsh Malekian, Asuman Ozdaglar</div>
-    <div class="venue"><b>Econometrica</b>, 2022</div>
-  </div>
+          <div class="paper">
+            <div class="title">
+              <a class="link" href="https://onlinelibrary.wiley.com/doi/full/10.3982/ECTA15847" target="_blank">
+                Learning From Reviews: The Selection Effect and the Speed of Learning
+              </a>
+            </div>
+            <div class="authors">With Daron Acemoglu, Azarakhsh Malekian, Asuman Ozdaglar</div>
+            <div class="venue"><b>Econometrica</b>, 2022</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">
-      <a class="link" href="https://www.aeaweb.org/articles?id=10.1257/mic.20200200&&from=f" target="_blank">
-        Too Much Data: Prices and Inefficiencies in Data Markets
-      </a>
-    </div>
-    <div class="authors">With Daron Acemoglu, Azarakhsh Malekian, Asuman Ozdaglar</div>
-    <div class="venue"><b>AEJ: Microeconomics</b>, 2021</div>
-  </div>
+          <div class="paper">
+            <div class="title">
+              <a class="link" href="https://www.aeaweb.org/articles?id=10.1257/mic.20200200&&from=f" target="_blank">
+                Too Much Data: Prices and Inefficiencies in Data Markets
+              </a>
+            </div>
+            <div class="authors">With Daron Acemoglu, Azarakhsh Malekian, Asuman Ozdaglar</div>
+            <div class="venue"><b>AEJ: Microeconomics</b>, 2021</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">
-      <a class="link" href="https://pubsonline.informs.org/doi/abs/10.1287/mnsc.2020.3820" target="_blank">
-        Maximizing Sequence-Submodular Functions and its Application to Online Advertising
-      </a>
-    </div>
-    <div class="authors">With Saeed Alaei and Azarakhsh Malekian</div>
-    <div class="venue"><b>Management Science</b>, 2020</div>
-  </div>
+          <div class="paper">
+            <div class="title">
+              <a class="link" href="https://pubsonline.informs.org/doi/abs/10.1287/mnsc.2020.3820" target="_blank">
+                Maximizing Sequence-Submodular Functions and its Application to Online Advertising
+              </a>
+            </div>
+            <div class="authors">With Saeed Alaei and Azarakhsh Malekian</div>
+            <div class="venue"><b>Management Science</b>, 2020</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">Informational Braess' Paradox: The Effect of Information on Traffic Congestion</div>
-    <div class="authors">With Daron Acemoglu, Azarakhsh Malekian, Asuman Ozdaglar</div>
-    <div class="venue"><b>Operations Research</b>, 2018</div>
-  </div>
+          <div class="paper">
+            <div class="title">
+                            <a class="link" href="https://pubsonline.informs.org/doi/abs/10.1287/opre.2017.1712" target="_blank">
+              Informational Braess' Paradox: The Effect of Information on Traffic Congestion
+                            </a>
+            </div>
+            <div class="authors">With Daron Acemoglu, Azarakhsh Malekian, Asuman Ozdaglar</div>
+            <div class="venue"><b>Operations Research</b>, 2018</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">Privacy-Constrained Network Formation</div>
-    <div class="authors">With Daron Acemoglu, Azarakhsh Malekian, Asuman Ozdaglar</div>
-    <div class="venue"><b>Games and Economic Behavior</b>, 2017</div>
-  </div>
+          <div class="paper">
+            <div class="title">
+              <a class="link" href="https://www.sciencedirect.com/science/article/pii/S0899825617301343?casa_token=Vim58uMQAjYAAAAA:WCiL_Q3Sbf57lYmy7K3y9jVVPbINoTW_awr_uyhupPwciZJHxCadbiHXjClXQUaaECG3XtHWeQ" target="_blank">
+Privacy-Constrained Network Formation                            </a>
+              </a>
+              </div>
+            <div class="authors">With Daron Acemoglu, Azarakhsh Malekian, Asuman Ozdaglar</div>
+            <div class="venue"><b>Games and Economic Behavior</b>, 2017</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">Convergence Rate of Distributed ADMM over Networks</div>
-    <div class="authors">With Asuman Ozdaglar</div>
-    <div class="venue"><b>IEEE Transactions on Automatic Control</b>, 2017</div>
-  </div>
+          <div class="paper">
+            <div class="title">
+              <a class="link" href="https://ieeexplore.ieee.org/abstract/document/7870649?casa_token=5UPdr_v_XygAAAAA:e5VcdIn4Zjwu5g7p7GBFfAZyyYxpZBZaNbd_gEwCzglAmRve_f9-mv3wPxvAdHRoIPumzS0_ifk" target="_blank">
+  Convergence Rate of Distributed ADMM over Networks              
+  </a>
+            </div>
+            <div class="authors">With Asuman Ozdaglar</div>
+            <div class="venue"><b>IEEE Transactions on Automatic Control</b>, 2017</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">Principal Inertia Components and Applications</div>
-    <div class="authors">With Flavio Calmon, Muriel M&eacute;dard, Mayank Varia, Mark Christiansen, Ken Duffy</div>
-    <div class="venue"><b>IEEE Transactions on Information Theory</b>, 2017</div>
-  </div>
+          <div class="paper">
+            <div class="title">
+<a class="link" href="https://ieeexplore.ieee.org/abstract/document/7918623?casa_token=lssUKArXVFgAAAAA:WVZPt709tTA6dF7FeDsNd4D9DKuUPNUFkA21_wxIzkUvbuAmiI0pbfHRjsioGqRYP0amVmIOAEw" target="_blank">
+Principal Inertia Components and Applications              </a>
+            </div>
+            <div class="authors">With Flavio Calmon, Muriel M&eacute;dard, Mayank Varia, Mark Christiansen, Ken Duffy</div>
+            <div class="venue"><b>IEEE Transactions on Information Theory</b>, 2017</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">Network Maximal Correlation</div>
-    <div class="authors">With Soheil Feizi, Ken Duffy, Manolis Kellis, Muriel M&eacute;dard</div>
-    <div class="venue"><b>IEEE Transactions on Network Science and Engineering</b>, 2017</div>
-  </div>
-
-</section>
-
+          <div class="paper">
+            <div class="title">
+              <a class="link" href="https://ieeexplore.ieee.org/abstract/document/7953578?casa_token=4AXtMCkUHlwAAAAA:cLOyKQnTeW4fk6a7sEvOlCnaITPjmE2rsPck4TrUC_dRcOxzzVpB_x_wMn38rFkAZJydsh957yE" target="_blank">
+  Network Maximal Correlation
+  </a>
+              
+              </div>
+            <div class="authors">With Soheil Feizi, Ken Duffy, Manolis Kellis, Muriel M&eacute;dard</div>
+            <div class="venue"><b>IEEE Transactions on Network Science and Engineering</b>, 2017</div>
+          </div>
         </section>
 
+        <!-- Conference Papers (complete list from your original) -->
         <section id="Conferences">
-          <!-- Replace your entire <section id="Conferences"> ... </section> with this -->
+          <h2>Refereed Conference Papers</h2>
+          <p class="subtle">List of refereed conference publications.</p>
 
-<section id="Conferences">
-  <h2>Refereed Conference Papers</h2>
-  <p class="subtle">List of refereed conference publications.</p>
+          <div class="paper">
+            <div class="title">Deterministic Refund Mechanisms</div>
+            <div class="authors">S. Alaei, S. Chawla, Z. Huang, A. Makhdoumi, A. Malekian</div>
+            <div class="venue">SAGT, 2025</div>
+          </div>
 
+          <div class="paper">
+            <div class="title">Approximately Optimal Mechanism for Multiunit Demand Buyers with Post-Allocation Inspection</div>
+            <div class="authors">A. Belloni, X. Li, A. Makhdoumi</div>
+            <div class="venue">ACM Conference on Economics and Computation (EC), 2025</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">Deterministic Refund Mechanisms</div>
-    <div class="authors">S. Alaei, S. Chawla, Z. Huang, A. Makhdoumi, A. Malekian</div>
-    <div class="venue">SAGT, 2025</div>
-  </div>
+          <div class="paper">
+            <div class="title">How Good Are Privacy Guarantees? Platform Architecture and Violation of User Privacy</div>
+            <div class="authors">D. Acemoglu, A. Fallah, A. Makhdoumi, A. Malekian, A. Ozdaglar</div>
+            <div class="venue">Conference on Web and Internet Economics (WINE), 2023</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">Approximately Optimal Mechanism for Multiunit Demand Buyers with Post-Allocation Inspection</div>
-    <div class="authors">A. Belloni, X. Li, A. Makhdoumi</div>
-    <div class="venue">ACM Conference on Economics and Computation (EC), 2025</div>
-  </div>
+          <div class="paper">
+            <div class="title">Multi-Item Order Fulfillment Revisited: LP Formulation and Prophet Inequality</div>
+            <div class="authors">A. Amil, A. Makhdoumi, Y. Wei</div>
+            <div class="venue">ACM Conference on Economics and Computation (EC), 2023</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">How Good Are Privacy Guarantees? Platform Architecture and Violation of User Privacy</div>
-    <div class="authors">D. Acemoglu, A. Fallah, A. Makhdoumi, A. Malekian, A. Ozdaglar</div>
-    <div class="venue">Conference on Web and Internet Economics (WINE), 2023</div>
-  </div>
+          <div class="paper">
+            <div class="title">Bridging Central and Local Differential Privacy in Data Acquisition Mechanisms</div>
+            <div class="authors">A. Fallah, A. Makhdoumi, A. Malekian, A. Ozdaglar</div>
+            <div class="venue">NeurIPS, 2022</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">Multi-Item Order Fulfillment Revisited: LP Formulation and Prophet Inequality</div>
-    <div class="authors">A. Amil, A. Makhdoumi, Y. Wei</div>
-    <div class="venue">ACM Conference on Economics and Computation (EC), 2023</div>
-  </div>
+          <div class="paper">
+            <div class="title">Optimal and Differentially Private Data Acquisition: Central and Local Mechanisms</div>
+            <div class="authors">A. Fallah, A. Makhdoumi, A. Malekian, A. Ozdaglar</div>
+            <div class="venue">ACM Conference on Economics and Computation (EC), 2022</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">Bridging Central and Local Differential Privacy in Data Acquisition Mechanisms</div>
-    <div class="authors">A. Fallah, A. Makhdoumi, A. Malekian, A. Ozdaglar</div>
-    <div class="venue">NeurIPS, 2022</div>
-  </div>
+          <div class="paper">
+            <div class="title">Descending Price Auctions with Bounded Number of Price Levels and Batched Prophet Inequality</div>
+            <div class="authors">S. Alaei, A. Makhdoumi, A. Malekian, R. Niazadeh</div>
+            <div class="venue">ACM Conference on Economics and Computation (EC), 2022</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">Optimal and Differentially Private Data Acquisition: Central and Local Mechanisms</div>
-    <div class="authors">A. Fallah, A. Makhdoumi, A. Malekian, A. Ozdaglar</div>
-    <div class="venue">ACM Conference on Economics and Computation (EC), 2022</div>
-  </div>
+          <div class="paper">
+            <div class="title">Revenue Maximization Under Unknown Private Values With Non-Obligatory Inspection</div>
+            <div class="authors">S. Alaei, A. Makhdoumi, A. Malekian</div>
+            <div class="venue">ACM Conference on Economics and Computation (EC), 2021</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">Descending Price Auctions with Bounded Number of Price Levels and Batched Prophet Inequality</div>
-    <div class="authors">S. Alaei, A. Makhdoumi, A. Malekian, R. Niazadeh</div>
-    <div class="venue">ACM Conference on Economics and Computation (EC), 2022</div>
-  </div>
+          <div class="paper">
+            <div class="title">
+              Optimal Dynamic Pricing of Network Goods (short version)
+            </div>
+            <div class="authors">A. Makhdoumi, A. Malekian, A. Ozdaglar</div>
+            <div class="venue">Allerton Conference on Communication, Control, and Computing, 2017</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">Revenue Maximization Under Unknown Private Values With Non-Obligatory Inspection</div>
-    <div class="authors">S. Alaei, A. Makhdoumi, A. Malekian</div>
-    <div class="venue">ACM Conference on Economics and Computation (EC), 2021</div>
-  </div>
+          <div class="paper">
+            <div class="title">Guesswork Subject to a Total Entropy Budget</div>
+            <div class="authors">A. Rezaee, A. Beirami, A. Makhdoumi, M. M&eacute;dard, K. Duffy</div>
+            <div class="venue">Allerton Conference on Communication, Control, and Computing, 2017</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">
-      <a class="link" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2980109" target="_blank" rel="noopener">
-        Optimal Dynamic Pricing of Network Goods
-      </a> (short version)
-    </div>
-    <div class="authors">A. Makhdoumi, A. Malekian, A. Ozdaglar</div>
-    <div class="venue">Allerton Conference on Communication, Control, and Computing, 2017</div>
-  </div>
+          <div class="paper">
+            <div class="title">
+              
+                Graph Balancing for Distributed Subgradient Methods over Directed Graphs
+              
+            </div>
+            <div class="authors">A. Makhdoumi, A. Ozdaglar</div>
+            <div class="venue">Conference on Decision and Control (CDC), 2015</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">Guesswork Subject to a Total Entropy Budget</div>
-    <div class="authors">A. Rezaee, A. Beirami, A. Makhdoumi, M. M&eacute;dard, K. Duffy</div>
-    <div class="venue">Allerton Conference on Communication, Control, and Computing, 2017</div>
-  </div>
+          <div class="paper">
+            <div class="title">
+              
+                Broadcast-based Distributed Alternating Direction Method of Multipliers
+              
+            </div>
+            <div class="authors">A. Makhdoumi, A. Ozdaglar</div>
+            <div class="venue">Allerton Conference on Communication, Control, and Computing, 2014</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">
-      <a class="link" href="http://arxiv.org/abs/1603.03461" target="_blank" rel="noopener">
-        Graph Balancing for Distributed Subgradient Methods over Directed Graphs
-      </a>
-    </div>
-    <div class="authors">A. Makhdoumi, A. Ozdaglar</div>
-    <div class="venue">Conference on Decision and Control (CDC), 2015</div>
-  </div>
+          <div class="paper">
+            <div class="title">
+              
+                Forgot Your Password: Correlation Dilution
+              
+            </div>
+            <div class="authors">A. Makhdoumi, F. Calmon, M. M&eacute;dard</div>
+            <div class="venue">International Symposium on Information Theory (ISIT), 2015</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">
-      <a class="link" href="broadcast.pdf" target="_blank" rel="noopener">
-        Broadcast-based Distributed Alternating Direction Method of Multipliers
-      </a>
-    </div>
-    <div class="authors">A. Makhdoumi, A. Ozdaglar</div>
-    <div class="venue">Allerton Conference on Communication, Control, and Computing, 2014</div>
-  </div>
+          <div class="paper">
+            <div class="title">
+              
+                Fundamental Limits of Perfect Privacy
+              
+            </div>
+            <div class="authors">F. Calmon, A. Makhdoumi, M. M&eacute;dard</div>
+            <div class="venue">International Symposium on Information Theory (ISIT), 2015</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">
-      <a class="link" href="http://www.rle.mit.edu/ncrc/wp-content/uploads/2015/04/Forgot-Your-Password-Correlation-Dilution.pdf" target="_blank" rel="noopener">
-        Forgot Your Password: Correlation Dilution
-      </a>
-    </div>
-    <div class="authors">A. Makhdoumi, F. Calmon, M. M&eacute;dard</div>
-    <div class="venue">International Symposium on Information Theory (ISIT), 2015</div>
-  </div>
+          <div class="paper">
+            <div class="title">
+              
+                From Information Bottleneck to Privacy Funnel
+              
+            </div>
+            <div class="authors">A. Makhdoumi, S. Salamatian, N. Fawaz, M. M&eacute;dard</div>
+            <div class="venue">Information Theory Workshop (ITW), 2014</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">
-      <a class="link" href="http://www.rle.mit.edu/ncrc/wp-content/uploads/2015/04/Fundamental-Limits-of-Perfect-Privacy.pdf" target="_blank" rel="noopener">
-        Fundamental Limits of Perfect Privacy
-      </a>
-    </div>
-    <div class="authors">F. Calmon, A. Makhdoumi, M. M&eacute;dard</div>
-    <div class="venue">International Symposium on Information Theory (ISIT), 2015</div>
-  </div>
+          <div class="paper">
+            <div class="title">
+              
+                Utility-Privacy Trade-off under Statistical Uncertainty
+              
+            </div>
+            <div class="authors">A. Makhdoumi, N. Fawaz</div>
+            <div class="venue">Allerton Conference on Communication, Control, and Computing, 2013</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">
-      <a class="link" href="http://arxiv.org/abs/1402.1774" target="_blank" rel="noopener">
-        From Information Bottleneck to Privacy Funnel
-      </a>
-    </div>
-    <div class="authors">A. Makhdoumi, S. Salamatian, N. Fawaz, M. M&eacute;dard</div>
-    <div class="venue">Information Theory Workshop (ITW), 2014</div>
-  </div>
+          <div class="paper">
+            <div class="title">
+              
+                On Locally Decodable Source Coding
+              
+            </div>
+            <div class="authors">A. Makhdoumi, S. Huang, M. M&eacute;dard, Y. Polyanskiy</div>
+            <div class="venue">International Conference on Communication (ICC), 2015</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">
-      <a class="link" href="http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=6736724" target="_blank" rel="noopener">
-        Utility-Privacy Trade-off under Statistical Uncertainty
-      </a>
-    </div>
-    <div class="authors">A. Makhdoumi, N. Fawaz</div>
-    <div class="venue">Allerton Conference on Communication, Control, and Computing, 2013</div>
-  </div>
+          <div class="paper">
+            <div class="title">
+              
+                A geometric perspective on guesswork
+              
+            </div>
+            <div class="authors">A. Beirami, R. Calderbank, M. Christiansen, K. Duffy, A. Makhdoumi, M. M&eacute;dard</div>
+            <div class="venue">Allerton Conference on Communication, Control, and Computing, 2015</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">
-      <a class="link" href="http://arxiv.org/abs/1308.5239" target="_blank" rel="noopener">
-        On Locally Decodable Source Coding
-      </a>
-    </div>
-    <div class="authors">A. Makhdoumi, S. Huang, M. M&eacute;dard, Y. Polyanskiy</div>
-    <div class="venue">International Conference on Communication (ICC), 2015</div>
-  </div>
+          <div class="paper">
+            <div class="title">
+              
+                Using T-codes as locally decodable source codes
+              
+            </div>
+            <div class="authors">U. Speidel, T. A. Gulliver, A. Makhdoumi, M. M&eacute;dard</div>
+            <div class="venue">Information Theory Workshop (ITW), 2014</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">
-      <a class="link" href="http://www.rle.mit.edu/ncrc/wp-content/uploads/2015/09/geo.pdf" target="_blank" rel="noopener">
-        A geometric perspective on guesswork
-      </a>
-    </div>
-    <div class="authors">A. Beirami, R. Calderbank, M. Christiansen, K. Duffy, A. Makhdoumi, M. M&eacute;dard</div>
-    <div class="venue">Allerton Conference on Communication, Control, and Computing, 2015</div>
-  </div>
+          <div class="paper">
+            <div class="title">
+              
+                Tunable Sparse Network Coding for Multicast Networks
+              
+            </div>
+            <div class="authors">S. Feizi, D. E. Lucani, C. W. S&oslash;rensen, A. Makhdoumi, M. M&eacute;dard</div>
+            <div class="venue">NetCod, 2014</div>
+          </div>
 
-  <div class="paper">
-    <div class="title">
-      <a class="link" href="http://www.rle.mit.edu/ncrc/wp-content/uploads/2014/08/2014_t_codes.pdf" target="_blank" rel="noopener">
-        Using T-codes as locally decodable source codes
-      </a>
-    </div>
-    <div class="authors">U. Speidel, T. A. Gulliver, A. Makhdoumi, M. M&eacute;dard</div>
-    <div class="venue">Information Theory Workshop (ITW), 2014</div>
-  </div>
+          <div class="paper">
+            <div class="title">
+              
+                Capacity Achieving Linear Codes with Random Binary Sparse Generating Matrices
+              
+            </div>
+            <div class="authors">A. Makhdoumi, H. K. Abadi, P. Pad, H. Saeedi, F. Marvasti, A. Alishahi</div>
+            <div class="venue">International Symposium on Information Theory (ISIT), 2012</div>
+          </div>
+        </section>
 
-  <div class="paper">
-    <div class="title">
-      <a class="link" href="http://www.rle.mit.edu/ncrc/wp-content/uploads/2014/10/tunable-sparse.pdf" target="_blank" rel="noopener">
-        Tunable Sparse Network Coding for Multicast Networks
-      </a>
-    </div>
-    <div class="authors">S. Feizi, D. E. Lucani, C. W. S&oslash;rensen, A. Makhdoumi, M. M&eacute;dard</div>
-    <div class="venue">NetCod, 2014</div>
-  </div>
-
-  <div class="paper">
-    <div class="title">
-      <a class="link" href="http://arxiv.org/abs/1102.4099" target="_blank" rel="noopener">
-        Capacity Achieving Linear Codes with Random Binary Sparse Generating Matrices
-      </a>
-    </div>
-    <div class="authors">A. Makhdoumi, H. K. Abadi, P. Pad, H. Saeedi, F. Marvasti, A. Alishahi</div>
-    <div class="venue">International Symposium on Information Theory (ISIT), 2012</div>
-  </div>
-</section>
-
-
+        <!-- Teaching -->
         <section id="Teaching">
           <h2>Teaching</h2>
           <p class="subtle">Recent and recurring courses.</p>
@@ -937,6 +1126,221 @@
             <div class="item"><span>Applied Probability and Statistics</span> — Fuqua (MQM)</div>
             <div class="item"><span>Convex Optimization</span> — Fuqua (PhD)</div>
             <div class="item"><span>Modeling and Decision Analysis</span> — Fuqua (MMS)</div>
+          </div>
+        </section>
+
+        <!-- Media Coverage (fancy) -->
+        <section id="InterviewsMedia">
+          <h2>Interviews &amp; Media</h2>
+
+          <div class="media-head">
+            <div class="kicker">Media Coverage</div>
+            <div class="note">Selected press, policy citations, and podcasts</div>
+          </div>
+
+          <div class="press-strip">
+            <a class="press-chip" href="https://www.brookings.edu/articles/a-model-of-behavioral-manipulation" target="_blank" rel="noopener">
+              <img src="https://www.google.com/s2/favicons?domain=brookings.edu&sz=64" alt="Brookings">
+              Brookings <span class="tag">Coverage</span>
+            </a>
+
+            <a class="press-chip" href="https://www.forbes.com/sites/johnkoetsier/2025/10/07/marketers-are-building-millions-of-ai-agents-what-does-that-mean-for-the-rest-of-us/" target="_blank" rel="noopener">
+              <img src="https://www.google.com/s2/favicons?domain=forbes.com&sz=64" alt="Forbes">
+              Forbes <span class="tag">Coverage</span>
+            </a>
+
+            <a class="press-chip" href="https://voxeu.org/article/can-we-have-too-much-data" target="_blank" rel="noopener">
+              <img src="https://www.google.com/s2/favicons?domain=voxeu.org&sz=64" alt="VoxEU">
+              VoxEU <span class="tag">Coverage</span>
+            </a>
+
+            <a class="press-chip" href="https://www.whitehouse.gov/wp-content/uploads/2023/03/erp-2023.pdf" target="_blank" rel="noopener">
+              <img src="https://www.google.com/s2/favicons?domain=whitehouse.gov&sz=64" alt="White House">
+              White House <span class="tag">Policy</span>
+            </a>
+
+            <a class="press-chip" href="https://www.fuqua.duke.edu/duke-fuqua-insights/how-ai-could-potentially-manipulate-consumers" target="_blank" rel="noopener">
+              <img src="https://www.google.com/s2/favicons?domain=fuqua.duke.edu&sz=64" alt="Fuqua">
+              Fuqua Insights <span class="tag">Coverage</span>
+            </a>
+
+            <a class="press-chip" href="https://www.fuqua.duke.edu/podcast/why-is-your-data-worth-so-little" target="_blank" rel="noopener">
+              <img src="https://www.google.com/s2/favicons?domain=fuqua.duke.edu&sz=64" alt="Fuqua Podcast">
+              Fuqua Podcast <span class="tag">Podcast</span>
+            </a>
+          </div>
+
+          <div class="media-featured">
+            <!-- Featured: Behavioral Manipulation -->
+            <div class="media-card2">
+              <div class="media-top">
+                <div class="outlet">
+                  <img src="https://www.google.com/s2/favicons?domain=brookings.edu&sz=64" alt="Brookings">
+                  <span>Brookings</span>
+                </div>
+              </div>
+
+              <div class="media-title">
+                <a class="link" href="https://www.brookings.edu/articles/a-model-of-behavioral-manipulation" target="_blank" rel="noopener">
+                  A model of behavioral manipulation
+                </a>
+              </div>
+
+              <div class="media-blurb">
+                Coverage of our work on how big data can enable behavioral manipulation.
+              </div>
+
+              <div class="badges">
+                <span class="badge">AI &amp; Manipulation</span>
+                <span class="badge">Behavioral Econ</span>
+              </div>
+
+              <div class="media-actions">
+                <a class="mini-btn primary" href="https://www.brookings.edu/articles/a-model-of-behavioral-manipulation" target="_blank" rel="noopener">Read</a>
+                <a class="mini-btn" href="https://www.nber.org/papers/w31872" target="_blank" rel="noopener">Paper (NBER)</a>
+              </div>
+
+              <div class="media-blurb" style="margin-top:10px;">
+                Highlights:
+                Daron Acemoglu, Ali Makhdoumi, Azarakhsh Malekian, and Asuman Ozdaglar,
+                <a class="link" href="https://www.nber.org/papers/w31872" target="_blank" rel="noopener">When Big Data Enables Behavioral Manipulation</a>,
+                <b>AER: Insights</b>, 2025.
+              </div>
+            </div>
+
+            <!-- Featured: Data markets -->
+            <div class="media-card2">
+              <div class="media-top">
+                <div class="outlet">
+                  <img src="https://www.google.com/s2/favicons?domain=voxeu.org&sz=64" alt="VoxEU">
+                  <span>VoxEU</span>
+                </div>
+              </div>
+
+              <div class="media-title">
+                <a class="link" href="https://voxeu.org/article/can-we-have-too-much-data" target="_blank" rel="noopener">
+                  Can we have too much data?
+                </a>
+              </div>
+
+              <div class="media-blurb">
+                Discussion of inefficiencies and pricing distortions in data markets.
+              </div>
+
+              <div class="badges">
+                <span class="badge">Data Markets</span>
+                <span class="badge">Market Design</span>
+              </div>
+
+              <div class="media-actions">
+                <a class="mini-btn primary" href="https://voxeu.org/article/can-we-have-too-much-data" target="_blank" rel="noopener">Read</a>
+                <a class="mini-btn" href="https://www.aeaweb.org/articles?id=10.1257/mic.20200200" target="_blank" rel="noopener">Paper (AEJ)</a>
+              </div>
+
+              <div class="media-blurb" style="margin-top:10px;">
+                Highlights:
+                Daron Acemoglu, Ali Makhdoumi, Azarakhsh Malekian, and Asuman Ozdaglar,
+                <a class="link" href="https://www.aeaweb.org/articles?id=10.1257/mic.20200200" target="_blank" rel="noopener">Too Much Data: Prices and Inefficiencies in Data Markets</a>,
+                <b>American Economic Journal: Microeconomics</b>, 2022.
+              </div>
+            </div>
+          </div>
+
+          <div class="media-grid">
+            <div class="media-card2">
+              <div class="media-top">
+                <div class="outlet">
+                  <img src="https://www.google.com/s2/favicons?domain=fuqua.duke.edu&sz=64" alt="Fuqua Insights">
+                  <span>Fuqua Insights</span>
+                </div>
+              </div>
+              <div class="media-title">
+                <a class="link" href="https://www.fuqua.duke.edu/duke-fuqua-insights/how-ai-could-potentially-manipulate-consumers" target="_blank" rel="noopener">
+                  How AI could potentially manipulate consumers
+                </a>
+              </div>
+              <div class="media-actions">
+                <a class="mini-btn primary" href="https://www.fuqua.duke.edu/duke-fuqua-insights/how-ai-could-potentially-manipulate-consumers" target="_blank" rel="noopener">Read</a>
+                <a class="mini-btn" href="https://www.nber.org/papers/w31872" target="_blank" rel="noopener">Paper</a>
+              </div>
+            </div>
+
+            <div class="media-card2">
+              <div class="media-top">
+                <div class="outlet">
+                  <img src="https://www.google.com/s2/favicons?domain=fuqua.duke.edu&sz=64" alt="Fuqua Insights">
+                  <span>Fuqua Insights</span>
+                </div>
+              </div>
+              <div class="media-title">
+                <a class="link" href="https://www.fuqua.duke.edu/duke-fuqua-insights/ali-makhdoumi-how-overcome-harms-excessive-data-sharing" target="_blank" rel="noopener">
+                  How to overcome the harms of excessive data sharing
+                </a>
+              </div>
+              <div class="media-actions">
+                <a class="mini-btn primary" href="https://www.fuqua.duke.edu/duke-fuqua-insights/ali-makhdoumi-how-overcome-harms-excessive-data-sharing" target="_blank" rel="noopener">Read</a>
+                <a class="mini-btn" href="https://www.aeaweb.org/articles?id=10.1257/mic.20200200" target="_blank" rel="noopener">Paper</a>
+              </div>
+            </div>
+
+            <div class="media-card2">
+              <div class="media-top">
+                <div class="outlet">
+                  <img src="https://www.google.com/s2/favicons?domain=fuqua.duke.edu&sz=64" alt="Fuqua Podcast">
+                  <span>Fuqua Podcast</span>
+                </div>
+              </div>
+              <div class="media-title">
+                <a class="link" href="https://www.fuqua.duke.edu/podcast/why-is-your-data-worth-so-little" target="_blank" rel="noopener">
+                  Why is your data worth so little?
+                </a>
+              </div>
+              <div class="media-blurb">
+                Podcast episode on data value and data markets.
+              </div>
+              <div class="media-actions">
+                <a class="mini-btn primary" href="https://www.fuqua.duke.edu/podcast/why-is-your-data-worth-so-little" target="_blank" rel="noopener">Listen</a>
+                <a class="mini-btn" href="https://www.aeaweb.org/articles?id=10.1257/mic.20200200" target="_blank" rel="noopener">Paper</a>
+              </div>
+            </div>
+
+            <div class="media-card2">
+              <div class="media-top">
+                <div class="outlet">
+                  <img src="https://www.google.com/s2/favicons?domain=forbes.com&sz=64" alt="Forbes">
+                  <span>Forbes</span>
+                </div>
+              </div>
+              <div class="media-title">
+                <a class="link" href="https://www.forbes.com/sites/johnkoetsier/2025/10/07/marketers-are-building-millions-of-ai-agents-what-does-that-mean-for-the-rest-of-us/" target="_blank" rel="noopener">
+                  Marketers are building millions of AI agents...
+                </a>
+              </div>
+              <div class="media-actions">
+                <a class="mini-btn primary" href="https://www.forbes.com/sites/johnkoetsier/2025/10/07/marketers-are-building-millions-of-ai-agents-what-does-that-mean-for-the-rest-of-us/" target="_blank" rel="noopener">Read</a>
+                <a class="mini-btn" href="https://www.aeaweb.org/articles?id=10.1257/mic.20200200" target="_blank" rel="noopener">Paper</a>
+              </div>
+            </div>
+
+            <div class="media-card2">
+              <div class="media-top">
+                <div class="outlet">
+                  <img src="https://www.google.com/s2/favicons?domain=whitehouse.gov&sz=64" alt="White House">
+                  <span>The White House</span>
+                </div>
+              </div>
+              <div class="media-title">
+                <a class="link" href="https://www.whitehouse.gov/wp-content/uploads/2023/03/erp-2023.pdf" target="_blank" rel="noopener">
+                  2023 Economic Report of the President (citation)
+                </a>
+              </div>
+              <div class="media-blurb">
+                Cited: <a class="link" href="https://www.aeaweb.org/articles?id=10.1257/mic.20200200" target="_blank" rel="noopener">Too Much Data</a>.
+              </div>
+              <div class="media-actions">
+                <a class="mini-btn primary" href="https://www.whitehouse.gov/wp-content/uploads/2023/03/erp-2023.pdf" target="_blank" rel="noopener">Open PDF</a>
+              </div>
+            </div>
           </div>
         </section>
 
